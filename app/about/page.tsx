@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+  import type { Metadata } from "next"
 import { Target, Eye } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { PageHeader } from "@/components/page-header"
@@ -12,48 +12,20 @@ export const metadata: Metadata = {
 
 const team = [
   {
-    initials: "HC",
-    name: "Harshit Chaturvedy",
-    role: "Founder & CEO",
-    bio: "Leads STEM Sprouts and designs creative, hands-on workshops. Loves computer science, teaching, and helping kids discover how fun STEM can be.",
+    initials: "SL",
+    name: "Sai Lokesh",
+    role: "Founder & Leader",
+    bio: "Leads STEM Sprouts and coordinates our operations to help kids discover the world of STEM through hands-on learning.",
   },
   {
-    initials: "LY",
-    name: "Lokesh Yarlagadda",
-    role: "VP - Operations",
-    bio: "Organizes and runs events smoothly behind the scenes. Keeps everything on track and makes sure each workshop is a great experience for every kid.",
-  },
-  {
-    initials: "SP",
-    name: "Saisohan Panda",
-    role: "VP - Public Relations",
-    bio: "Spreads the word about our events and helps connect with new families. He's also into robotics and loves sharing cool STEM ideas with others.",
-  },
-  {
-    initials: "DP",
-    name: "Dhavi Pabolu",
-    role: "Workshop Expert",
-    bio: "Designs and leads engaging STEM sessions, bringing complex concepts to life through hands-on activities and creative experiments.",
-  },
-  {
-    initials: "AG",
-    name: "Aadhya Guntupalli",
-    role: "Workshop Expert",
-    bio: "Expert in creating fun, educational content for workshops. Passionate about inspiring kids to explore the wonders of science and technology.",
-  },
-  {
-    initials: "KB",
-    name: "Kashish Bhargava",
-    role: "Graphic Design",
-    bio: "Creates all the visual magic for STEM Sprouts, from social media graphics to workshop materials, ensuring our brand is as vibrant as our missions.",
+    initials: "HR",
+    name: "Hridhun Regupathi",
+    role: "Grant Writer",
+    bio: "Secures critical funding and grants to keep our workshops completely free and accessible for more communities globally.",
   },
 ]
 
 const openRoles = [
-  {
-    title: "Grant Writer",
-    description: "Help us secure funding to keep our workshops free and expand our reach to more communities.",
-  },
   {
     title: "Pinboard Developer",
     description: "Work on our open-source virtual circuit builder and help shape the future of our learning platform.",
@@ -101,11 +73,11 @@ export default function AboutPage() {
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black dark:text-white">Meet Our Team</h2>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mb-20">
+          <div className="grid sm:grid-cols-2 md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-20">
             {team.map((member, index) => (
               <PopIn
                 key={member.name}
-                delay={(index % 3) * 120}
+                delay={(index % 2) * 120}
                 className="bg-white dark:bg-black border-4 border-black dark:border-white rounded-3xl p-6 text-center hover:shadow-[6px_6px_0px_0px_rgba(34,197,94,1)] transition-shadow"
               >
                 <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-[#22C55E] border-2 border-black dark:border-white flex items-center justify-center font-bold text-xl text-black">
@@ -125,7 +97,7 @@ export default function AboutPage() {
               passionate individuals to join us in the following roles:
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto mb-10">
+            <div className="grid sm:grid-cols-1 gap-6 max-w-md mx-auto mb-10">
               {openRoles.map((role, index) => (
                 <PopIn key={role.title} delay={index * 120} className="bg-white border-4 border-black dark:border-white rounded-2xl p-6 text-left">
                   <h3 className="font-bold text-lg text-black mb-2">{role.title}</h3>
