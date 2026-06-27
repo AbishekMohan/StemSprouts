@@ -1,4 +1,4 @@
-  import type { Metadata } from "next"
+import type { Metadata } from "next"
 import { Target, Eye } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { PageHeader } from "@/components/page-header"
