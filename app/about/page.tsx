@@ -12,10 +12,22 @@ export const metadata: Metadata = {
 
 const team = [
   {
+    initials: "H",
+    name: "Harshit",
+    role: "Website Developer",
+    bio: "Helps build and maintain the STEM Sprouts website so our resources and story stay easy to explore.",
+  },
+  {
     initials: "SL",
     name: "Sai Lokesh",
-    role: "Founder & Leader",
-    bio: "Leads STEM Sprouts and coordinates our operations to help kids discover the world of STEM through hands-on learning.",
+    role: "Website Developer",
+    bio: "Works on the STEM Sprouts website and supports the digital experience for visitors and volunteers.",
+  },
+  {
+    initials: "A",
+    name: "Abishek",
+    role: "Website Developer",
+    bio: "Builds and refines website features to help present STEM Sprouts' programs clearly and effectively.",
   },
   {
     initials: "HR",
