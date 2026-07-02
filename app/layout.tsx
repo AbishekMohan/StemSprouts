@@ -5,6 +5,7 @@ import "./globals.css"
 
 import { Onest, Geist_Mono as V0_Font_Geist_Mono } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
+import { ScrollToTop } from "@/components/scroll-to-top"
 
 // Initialize fonts
 const _geistMono = V0_Font_Geist_Mono({
@@ -40,6 +41,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <ScrollToTop />
           {children}
         </ThemeProvider>
       </body>

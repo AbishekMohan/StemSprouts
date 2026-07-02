@@ -13,6 +13,7 @@ function PhotoSlide({
   subtext,
   children,
   priority,
+  imagePosition = "object-center",
 }: {
   image: string
   alt: string
@@ -21,10 +22,11 @@ function PhotoSlide({
   subtext: string
   children: ReactNode
   priority?: boolean
+  imagePosition?: string
 }) {
   return (
     <div className="relative w-full h-[400px] sm:h-[420px] md:h-[460px] overflow-hidden">
-      <Image src={image} alt={alt} fill priority={priority} className="object-cover" />
+      <Image src={image} alt={alt} fill priority={priority} className={`object-cover ${imagePosition}`} />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
       <div className="absolute inset-0 flex items-center">
         <div className="container mx-auto px-12 sm:px-14 md:px-16">
@@ -130,6 +132,7 @@ const slides: CarouselSlide[] = [
       <PhotoSlide
         image="/stem/tedx-talk.jpeg"
         alt="A STEM Sprouts student speaking at a TEDx event"
+        imagePosition="object-[center_20%]"
         headline="Help us reach"
         highlight="more students"
         subtext="Sponsorships and donations fund Pinboard development, chapter resources, and STEM kits for students around the world."

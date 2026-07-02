@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { Navigation } from "@/components/navigation"
 import { PageHeader } from "@/components/page-header"
 import { Footer } from "@/components/footer"
-import { PopIn } from "@/components/pop-in"
 
 export const metadata: Metadata = {
   title: "Privacy Policy - STEM Sprouts",
@@ -24,8 +23,8 @@ export default function PrivacyPolicyPage() {
       <Navigation />
       <PageHeader title="Privacy" highlight="Policy" description="Effective Date: January 1st, 2026" />
 
-      <section className="container mx-auto px-4 py-16 md:py-24">
-        <PopIn className="max-w-3xl mx-auto bg-white dark:bg-black border-4 border-black dark:border-white rounded-3xl p-8 md:p-12 space-y-10">
+      <section className="container mx-auto px-4 py-8 md:py-12">
+        <div className="max-w-3xl mx-auto bg-white dark:bg-black border-4 border-black dark:border-white rounded-3xl p-8 md:p-12 space-y-10">
           <Section title="1. Introduction">
             <p>
               Welcome to STEM Sprouts (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). We value your privacy and
@@ -170,7 +169,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <p>Website: stem-sprouts.org</p>
           </Section>
-        </PopIn>
+        </div>
       </section>
 
       <Footer />
