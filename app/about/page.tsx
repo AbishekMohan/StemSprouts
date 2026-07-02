@@ -12,27 +12,33 @@ export const metadata: Metadata = {
 
 const team = [
   {
-    initials: "H",
-    name: "Harshit",
-    role: "Website Developer",
-    bio: "Helps build and maintain the STEM Sprouts website so our resources and story stay easy to explore.",
+    initials: "HC",
+    name: "Harshit Chaturvedy",
+    role: "Founder & Executive ",
+    bio: "Founder of STEM Sprouts, leading the organization's vision and maintaining community connections.",
+  },
+   {
+    initials: "LY",
+    name: "Lokesh Yarlagadda",
+    role: "Vice-President of Operations",
+    bio: "Manages day-to-day operations and supports the digital experience for visitors and chapters.",
+  },
+    {
+    initials: "SP",
+    name: "Saisohan Panda",
+    role: "Vice-President of Policy",
+    bio: "Oversees organizational policies, compliance, and strategic outreach to expand program impact.",
   },
   {
-    initials: "SL",
-    name: "Sai Lokesh",
-    role: "Website Developer",
-    bio: "Works on the STEM Sprouts website and supports the digital experience for visitors and volunteers.",
-  },
-  {
-    initials: "A",
-    name: "Abishek",
+    initials: "AM",
+    name: "Abishek Mohan",
     role: "Website Developer",
     bio: "Builds and refines website features to help present STEM Sprouts' programs clearly and effectively.",
   },
   {
     initials: "HR",
     name: "Hridhun Regupathi",
-    role: "Grant Writer",
+    role: "Head Grant Writer",
     bio: "Secures critical funding and grants to keep our workshops completely free and accessible for more communities globally.",
   },
 ]
