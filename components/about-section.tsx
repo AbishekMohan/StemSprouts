@@ -10,7 +10,7 @@ export function AboutSection() {
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
         <PopIn className="flex justify-center">
           <div className="relative w-full max-w-lg aspect-square border-[4px] border-black dark:border-white rounded-full overflow-hidden bg-[#22C55E] shadow-[-8px_8px_0px_0px_rgba(34,197,94,1)]">
-            <Image src="/stem/aboutus.jpg" alt="Students participating in a STEM Sprouts session" fill className="object-cover" />
+            <Image src="/stem/team-workshop.jpeg" alt="Students participating in a STEM Sprouts workshop session" fill className="object-cover" />
           </div>
         </PopIn>
 

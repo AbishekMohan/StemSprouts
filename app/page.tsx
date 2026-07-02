@@ -2,6 +2,7 @@ import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
 import { LogoMarquee } from "@/components/logo-marquee"
 import { AboutSection } from "@/components/about-section"
+import { KenyaSection } from "@/components/kenya-section"
 import { PortfolioSection } from "@/components/portfolio-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { FounderSection } from "@/components/founder-section"
@@ -14,6 +15,7 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <AboutSection />
+      <KenyaSection />
       <LogoMarquee />
       <ExperienceSection />
       <PortfolioSection />
