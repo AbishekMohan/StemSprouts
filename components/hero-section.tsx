@@ -79,8 +79,8 @@ const slides: CarouselSlide[] = [
     label: "Now active in chapters worldwide",
     content: (
       <PhotoSlide
-        image="/stem/aboutus.jpg"
-        alt="Students participating in a STEM Sprouts session"
+        image="/stem/lego-rocket-demo.jpeg"
+        alt="A student presenting a LEGO rocket model to fellow STEM Sprouts students"
         headline="Now active"
         highlight="around the world"
         subtext="From Georgia to Kenya to India, STEM Sprouts chapters are popping up everywhere, run by students, for students."
@@ -128,8 +128,8 @@ const slides: CarouselSlide[] = [
     label: "Help us reach more students everywhere",
     content: (
       <PhotoSlide
-        image="/stem/background.jpg"
-        alt="STEM Sprouts students at a workshop"
+        image="/stem/tedx-talk.jpeg"
+        alt="A STEM Sprouts student speaking at a TEDx event"
         headline="Help us reach"
         highlight="more students"
         subtext="Sponsorships and donations fund Pinboard development, chapter resources, and STEM kits for students around the world."
