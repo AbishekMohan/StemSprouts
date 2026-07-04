@@ -8,30 +8,30 @@ import { PopIn } from "@/components/pop-in"
 
 export const metadata: Metadata = {
   title: "Pinboard - STEM Sprouts",
-  description: "An open-source, browser-based platform designed for young makers to build virtual circuits, code logic, and explore STEM concepts freely.",
+  description: "A free, open-source block-coding platform for Arduino and Raspberry Pi. Build real hardware projects, simulate them live in your browser, and learn through guided lessons.",
 }
 
 const features = [
   {
-    title: "Virtual Circuit Building",
+    title: "Live Hardware Simulation",
     description:
-      "Drag and drop components to build complex electrical circuits right in your browser. No physical hardware required to start learning the fundamentals of electronics.",
+      "Place real components like LEDs, buttons, potentiometers, servos, and buzzers on a virtual board, then watch them respond exactly like the real thing. No physical hardware required to start learning electronics.",
     image: "/stem/virtualcircuitbuilding.png",
-    bullets: ["Interactive components", "Real-time simulation", "Beginner-friendly interface"],
+    bullets: ["Real Arduino & Raspberry Pi boards", "Live component simulation", "Built-in wiring diagnostics"],
   },
   {
-    title: "Visual Logic Coding",
+    title: "Blocks That Generate Real Code",
     description:
-      "Control your circuits with powerful logic blocks. Pinboard makes it easy to understand how code interacts with hardware through an intuitive visual programming interface.",
+      "Drag and drop blocks to control your circuit, and watch Pinboard generate the actual Arduino C code behind it in real time. Click any block to see exactly which lines it produced.",
     image: "/stem/visualcode.png",
-    bullets: ["Block-based programming", "Hardware-software integration", "Immediate feedback loop"],
+    bullets: ["Real generated Arduino code", "Click-to-trace block ↔ code", "Beginner to advanced toolboxes"],
   },
   {
-    title: "Open Source & Community Driven",
+    title: "Guided Lessons, Open Source",
     description:
-      "Built with modern web technologies, Pinboard is completely open source. We encourage young developers to look under the hood, contribute to the code, and help shape the future of STEM education.",
+      "Built and maintained by our own students, Pinboard walks makers through guided lessons that check your actual running project, not just your code. Completely open source on GitHub, with free cloud sync for every chapter to adopt.",
     image: "/stem/githubss.png",
-    bullets: ["Modern JS & Canvas", "Extensible architecture", "GitHub collaboration"],
+    bullets: ["Step-by-step guided lessons", "Free cloud project sync", "Fully open source on GitHub"],
   },
 ]
 
@@ -49,8 +49,8 @@ export default function PinboardPage() {
             <span className="bg-[#22C55E] text-black px-3 py-1 inline-block">Pinboard</span>
           </h1>
           <p className="text-gray-600 dark:text-gray-300 text-base md:text-lg leading-relaxed mb-8">
-            An open-source, browser-based platform designed for young makers to build virtual circuits, code logic,
-            and explore STEM concepts freely.
+            A free, open-source block-coding platform for Arduino and Raspberry Pi. Build real hardware projects,
+            simulate them live in your browser, and learn through guided lessons.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="https://pinboard.stem-sprouts.org" target="_blank" rel="noopener noreferrer">
@@ -102,7 +102,7 @@ export default function PinboardPage() {
 
         <PopIn className="max-w-2xl mx-auto text-center bg-white dark:bg-black border-4 border-black dark:border-white rounded-3xl p-10 md:p-16 mt-16">
           <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-4">Ready to start making?</h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-8">Join students exploring STEM through Pinboard.</p>
+          <p className="text-gray-600 dark:text-gray-400 mb-8">Join students building real hardware projects through Pinboard.</p>
           <a href="https://pinboard.stem-sprouts.org" target="_blank" rel="noopener noreferrer">
             <Button className="bg-[#22C55E] text-black hover:bg-[#1ea750] rounded-xl px-8 py-6 text-base font-bold h-auto">
               Open Pinboard Now ↗
