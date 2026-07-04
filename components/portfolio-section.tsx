@@ -21,13 +21,13 @@ export function PortfolioSection() {
             </span>
 
             <h3 className="text-xl md:text-[28px] font-bold mb-4 leading-tight md:leading-[40px] text-[#0B0B0B] dark:text-white">
-              Pinboard: open-source, browser-based, growing fast
+              Pinboard: real Arduino code, zero hardware required
             </h3>
 
             <p className="text-base md:text-[18px] text-[#393939] dark:text-gray-300 mb-8 leading-relaxed md:leading-[30px] font-medium">
-              Built and maintained by our own students, Pinboard lets young makers anywhere build virtual circuits,
-              code logic, and explore STEM concepts, right in the browser, fully open source on GitHub, and free
-              for every chapter to adopt.
+              Built and maintained by our own students, Pinboard lets young makers drag-and-drop blocks into real
+              Arduino code, run it against a live simulated circuit, and learn through guided lessons, right in
+              the browser. Fully open source on GitHub, with free cloud project sync for every chapter to adopt.
             </p>
 
             <Link
