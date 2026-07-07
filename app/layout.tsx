@@ -21,7 +21,7 @@ const onest = Onest({
 })
 
 export const metadata: Metadata = {
-  title: "Pinboard | STEM Sprouts",
+  title: "STEM Sprouts",
   description: "A free, browser-based block-coding platform for Arduino and Raspberry Pi. Build, simulate, and run real hardware projects, no equipment or install required, with guided lessons and cloud project sync.",
   icons: { icon: "/stem/favicon.png" },
 }
