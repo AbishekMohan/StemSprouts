@@ -23,6 +23,12 @@ export default async function AdminPage() {
             <Link href="/admin/new" className="bg-[#22C55E] text-black hover:bg-[#1ea750] rounded-lg px-4 py-2 font-bold text-sm">
               New Post
             </Link>
+            <Link
+              href="/admin/setup"
+              className="border-2 border-black dark:border-white text-black dark:text-white rounded-lg px-4 py-2 font-bold text-sm"
+            >
+              Add Admin
+            </Link>
             <LogoutButton />
           </div>
         </div>

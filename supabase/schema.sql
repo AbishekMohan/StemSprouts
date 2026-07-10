@@ -26,3 +26,15 @@ create policy "Public can read published posts"
 
 -- All writes go through the service_role key from the admin API routes,
 -- which bypasses RLS entirely, so no insert/update/delete policy is needed here.
+
+create table if not exists admin_users (
+  id uuid primary key default gen_random_uuid(),
+  username text unique not null,
+  password_hash text not null,
+  created_at timestamptz not null default now()
+);
+
+alter table admin_users enable row level security;
+
+-- No policies: this table is only ever touched via the service_role key
+-- from server-side API routes (never exposed to the anon/public client).

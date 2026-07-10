@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import bcrypt from "bcryptjs"
-import { getAdminUsers } from "@/lib/admin-users"
+import { getAdminUserByUsername } from "@/lib/admin-users"
 import { signAdminToken } from "@/lib/auth"
 
 export async function POST(req: NextRequest) {
@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing username or password" }, { status: 400 })
   }
 
-  const user = getAdminUsers().find((u) => u.username === username)
+  const user = await getAdminUserByUsername(username)
   if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 })
   }

@@ -32,15 +32,11 @@ npm run start
 ## News/admin setup (Supabase)
 
 The `/news` blog and `/admin` editor are backed by Supabase, with a JWT cookie for admin auth.
+Admin accounts (username + bcrypt password hash) live in the `admin_users` table, not an env var.
 
-1. In the Supabase project's SQL editor, run [`supabase/schema.sql`](supabase/schema.sql) to create the `posts` table.
+1. In the Supabase project's SQL editor, run [`supabase/schema.sql`](supabase/schema.sql) to create the `posts` and `admin_users` tables.
 2. Fill in `.env.local` (see `.env.local` for the placeholders already there):
    - `SUPABASE_SERVICE_ROLE_KEY` — Supabase dashboard > Project Settings > API > service_role secret. Server-only, never expose to the client.
    - `JWT_SECRET` — already generated; keep it secret and consistent across environments (dev + Vercel).
-   - `ADMIN_USERS` — generate with:
-     ```bash
-     node scripts/generate-admin-users.mjs alice:somepassword bob:anotherpassword
-     ```
-     Paste the printed base64 string in as `ADMIN_USERS`. Add one `username:password` pair per admin.
 3. Set the same env vars in Vercel (Project Settings > Environment Variables) for production.
-4. Log in at `/admin/login` with one of the usernames/passwords you generated.
+4. Visit `/admin/setup` to create the first admin account (you pick your own username/password there) — this logs you straight in. Once at least one admin exists, `/admin/setup` requires being logged in already, so use the "Add Admin" button on `/admin` to invite more accounts.
