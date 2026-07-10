@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { supabasePublic } from "@/lib/supabase-public"
+import { formatCategory } from "@/lib/format-category"
 
 export const revalidate = 60
 
@@ -31,9 +32,9 @@ export default async function NewsPostPage({ params }: Props) {
       <section className="container mx-auto px-4 py-16 md:py-24">
         <article className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-4 flex-wrap">
-            {post.category === "research" && (
+            {post.category !== "news" && (
               <span className="inline-block bg-[#22C55E] text-black text-xs font-bold px-3 py-1 rounded-full">
-                Research
+                {formatCategory(post.category)}
               </span>
             )}
             <span className="text-sm text-gray-500 dark:text-gray-400">
