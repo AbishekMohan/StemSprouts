@@ -1,12 +1,24 @@
 import { NextRequest, NextResponse } from "next/server"
+import { timingSafeEqual } from "crypto"
 import { countAdminUsers, createAdminUser, getAdminUserByUsername } from "@/lib/admin-users"
 import { requireAdmin } from "@/lib/require-admin"
 import { signAdminToken } from "@/lib/auth"
+
+function matchesSetupSecret(provided: string) {
+  const expected = process.env.ADMIN_SETUP_SECRET
+  if (!expected) return false // fail closed if misconfigured, not open
+
+  const a = Buffer.from(provided)
+  const b = Buffer.from(expected)
+  if (a.length !== b.length) return false
+  return timingSafeEqual(a, b)
+}
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null)
   const username = typeof body?.username === "string" ? body.username.trim() : ""
   const password = typeof body?.password === "string" ? body.password : ""
+  const setupSecret = typeof body?.setupSecret === "string" ? body.setupSecret : ""
 
   if (username.length < 3) {
     return NextResponse.json({ error: "Username must be at least 3 characters" }, { status: 400 })
@@ -17,9 +29,16 @@ export async function POST(req: NextRequest) {
 
   const existingAdminCount = await countAdminUsers()
 
-  // First account ever: anyone can bootstrap it. After that, only a logged-in
-  // admin can create more accounts.
-  if (existingAdminCount > 0) {
+  // First account ever: requires the one-time setup secret, since this
+  // endpoint is otherwise unauthenticated (nobody's an admin yet to check
+  // against). Without this, whoever visits /admin/setup first — not
+  // necessarily the site owner — becomes the permanent first admin.
+  // After that, only a logged-in admin can create more accounts.
+  if (existingAdminCount === 0) {
+    if (!matchesSetupSecret(setupSecret)) {
+      return NextResponse.json({ error: "Invalid setup code" }, { status: 403 })
+    }
+  } else {
     const unauthorized = await requireAdmin(req)
     if (unauthorized) return unauthorized
   }

@@ -20,7 +20,10 @@ export default async function AdminPage() {
         <div className="flex items-center justify-between mb-8 flex-wrap gap-3">
           <h1 className="text-2xl font-bold text-black dark:text-white">Posts</h1>
           <div className="flex gap-3">
-            <Link href="/admin/new" className="bg-[#22C55E] text-black hover:bg-[#1ea750] rounded-lg px-4 py-2 font-bold text-sm">
+            <Link
+              href="/admin/new"
+              className="flex items-center justify-center text-center bg-[#22C55E] text-black hover:bg-[#1ea750] rounded-lg px-4 py-2 font-bold text-sm"
+            >
               New Post
             </Link>
             <Link

@@ -38,5 +38,6 @@ Admin accounts (username + bcrypt password hash) live in the `admin_users` table
 2. Fill in `.env.local` (see `.env.local` for the placeholders already there):
    - `SUPABASE_SERVICE_ROLE_KEY` — Supabase dashboard > Project Settings > API > service_role secret. Server-only, never expose to the client.
    - `JWT_SECRET` — already generated; keep it secret and consistent across environments (dev + Vercel).
+   - `ADMIN_SETUP_SECRET` — already generated; a one-time code only the site owner should know, required to claim the first admin account (see below). Keep it out of chat/Slack once you've used it — treat it like a password.
 3. Set the same env vars in Vercel (Project Settings > Environment Variables) for production.
-4. Visit `/admin/setup` to create the first admin account (you pick your own username/password there) — this logs you straight in. Once at least one admin exists, `/admin/setup` requires being logged in already, so use the "Add Admin" button on `/admin` to invite more accounts.
+4. Visit `/admin/setup` and create the first admin account (you pick your own username/password) — you'll also need to enter `ADMIN_SETUP_SECRET` in the "Setup code" field to claim this slot. This is required *only* for the very first account, so that whoever finds the URL first can't take it over — after that, `/admin/setup` requires being logged in already, so use the "Add Admin" button on `/admin` to invite more people (no secret needed for them).

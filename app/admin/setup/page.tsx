@@ -9,6 +9,7 @@ export default function AdminSetupPage() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [setupSecret, setSetupSecret] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
 
@@ -26,7 +27,7 @@ export default function AdminSetupPage() {
     const res = await fetch("/api/auth/setup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ username, password, setupSecret }),
     })
 
     setLoading(false)
@@ -57,6 +58,22 @@ export default function AdminSetupPage() {
           automatically. Otherwise you'll need to already be logged in.
         </p>
         {error && <p className="text-red-600 text-sm text-center">{error}</p>}
+        <div>
+          <label className="block text-sm font-semibold mb-1 text-black dark:text-white" htmlFor="setupSecret">
+            Setup code
+          </label>
+          <input
+            id="setupSecret"
+            type="password"
+            value={setupSecret}
+            onChange={(e) => setSetupSecret(e.target.value)}
+            className="w-full border-2 border-black dark:border-white rounded-lg px-3 py-2 bg-white dark:bg-black text-black dark:text-white"
+            autoComplete="off"
+          />
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+            Only needed to create the very first account. Leave blank if you're already logged in as an admin.
+          </p>
+        </div>
         <div>
           <label className="block text-sm font-semibold mb-1 text-black dark:text-white" htmlFor="username">
             Username
