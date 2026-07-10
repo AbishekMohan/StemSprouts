@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { label: "Partner", href: "/partner" },
   { label: "Pinboard", href: "/pinboard" },
   { label: "Resources", href: "/resources" },
+  { label: "News", href: "/news" },
   { label: "Chapters", href: "https://chapters.stem-sprouts.org", external: true },
   { label: "Contact", href: "/#contact" },
 ]
