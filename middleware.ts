@@ -2,7 +2,11 @@ import { NextRequest, NextResponse } from "next/server"
 import { verifyAdminToken } from "@/lib/auth"
 
 export async function middleware(req: NextRequest) {
-  if (req.nextUrl.pathname.startsWith("/admin/login") || req.nextUrl.pathname.startsWith("/admin/setup")) {
+  if (
+    req.nextUrl.pathname.startsWith("/admin/login") ||
+    req.nextUrl.pathname.startsWith("/admin/setup") ||
+    req.nextUrl.pathname.startsWith("/admin/accept-invite")
+  ) {
     return NextResponse.next()
   }
 

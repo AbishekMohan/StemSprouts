@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { timingSafeEqual } from "crypto"
 import { countAdminUsers, createAdminUser, getAdminUserByUsername } from "@/lib/admin-users"
-import { requireAdmin } from "@/lib/require-admin"
 import { signAdminToken } from "@/lib/auth"
 
 function matchesSetupSecret(provided: string) {
@@ -29,18 +28,20 @@ export async function POST(req: NextRequest) {
 
   const existingAdminCount = await countAdminUsers()
 
-  // First account ever: requires the one-time setup secret, since this
-  // endpoint is otherwise unauthenticated (nobody's an admin yet to check
-  // against). Without this, whoever visits /admin/setup first — not
-  // necessarily the site owner — becomes the permanent first admin.
-  // After that, only a logged-in admin can create more accounts.
-  if (existingAdminCount === 0) {
-    if (!matchesSetupSecret(setupSecret)) {
-      return NextResponse.json({ error: "Invalid setup code" }, { status: 403 })
-    }
-  } else {
-    const unauthorized = await requireAdmin(req)
-    if (unauthorized) return unauthorized
+  // This endpoint only ever bootstraps the very first admin account, and
+  // requires the one-time setup secret since nobody's an admin yet to check
+  // against. Once any admin exists, further accounts go through invite
+  // links (/admin/invite) instead, so the person who's logging in always
+  // picks their own username/password rather than someone else typing it
+  // in for them.
+  if (existingAdminCount > 0) {
+    return NextResponse.json(
+      { error: "Setup already complete. Ask an existing admin for an invite link instead." },
+      { status: 403 },
+    )
+  }
+  if (!matchesSetupSecret(setupSecret)) {
+    return NextResponse.json({ error: "Invalid setup code" }, { status: 403 })
   }
 
   if (await getAdminUserByUsername(username)) {
@@ -49,20 +50,14 @@ export async function POST(req: NextRequest) {
 
   const user = await createAdminUser(username, password)
 
+  const token = await signAdminToken(user.username)
   const res = NextResponse.json({ success: true })
-
-  // Bootstrapping the first account logs you straight in. Adding an
-  // additional account while already logged in leaves your session as-is.
-  if (existingAdminCount === 0) {
-    const token = await signAdminToken(user.username)
-    res.cookies.set("admin_token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      path: "/",
-      maxAge: 60 * 60 * 24 * 30,
-    })
-  }
-
+  res.cookies.set("admin_token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 30,
+  })
   return res
 }

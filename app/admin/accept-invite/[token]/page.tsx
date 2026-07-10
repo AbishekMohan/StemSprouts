@@ -1,15 +1,14 @@
 "use client"
 
 import { useState, type FormEvent } from "react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
+import { useRouter, useParams } from "next/navigation"
 
-export default function AdminSetupPage() {
+export default function AcceptInvitePage() {
   const router = useRouter()
+  const params = useParams<{ token: string }>()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const [setupSecret, setSetupSecret] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
 
@@ -24,10 +23,10 @@ export default function AdminSetupPage() {
 
     setLoading(true)
 
-    const res = await fetch("/api/auth/setup", {
+    const res = await fetch("/api/auth/accept-invite", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password, setupSecret }),
+      body: JSON.stringify({ token: params.token, username, password }),
     })
 
     setLoading(false)
@@ -48,26 +47,11 @@ export default function AdminSetupPage() {
         onSubmit={handleSubmit}
         className="w-full max-w-sm bg-white dark:bg-black border-4 border-black dark:border-white rounded-3xl p-8 space-y-5"
       >
-        <h1 className="text-2xl font-bold text-black dark:text-white text-center">First-Time Setup</h1>
+        <h1 className="text-2xl font-bold text-black dark:text-white text-center">You're Invited</h1>
         <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
-          This creates the very first admin account and requires the setup code. If an admin already exists, use an
-          invite link instead &mdash; ask an existing admin for one.
+          Pick a username and password for your STEM Sprouts admin account.
         </p>
         {error && <p className="text-red-600 text-sm text-center">{error}</p>}
-        <div>
-          <label className="block text-sm font-semibold mb-1 text-black dark:text-white" htmlFor="setupSecret">
-            Setup code
-          </label>
-          <input
-            id="setupSecret"
-            type="password"
-            value={setupSecret}
-            onChange={(e) => setSetupSecret(e.target.value)}
-            className="w-full border-2 border-black dark:border-white rounded-lg px-3 py-2 bg-white dark:bg-black text-black dark:text-white"
-            autoComplete="off"
-            required
-          />
-        </div>
         <div>
           <label className="block text-sm font-semibold mb-1 text-black dark:text-white" htmlFor="username">
             Username
@@ -119,12 +103,6 @@ export default function AdminSetupPage() {
         >
           {loading ? "Creating account..." : "Create account"}
         </button>
-        <p className="text-sm text-center text-gray-500 dark:text-gray-400">
-          Already have an account?{" "}
-          <Link href="/admin/login" className="underline text-black dark:text-white">
-            Log in
-          </Link>
-        </p>
       </form>
     </main>
   )
