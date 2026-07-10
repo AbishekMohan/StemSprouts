@@ -38,3 +38,18 @@ alter table admin_users enable row level security;
 
 -- No policies: this table is only ever touched via the service_role key
 -- from server-side API routes (never exposed to the anon/public client).
+
+create table if not exists admin_invites (
+  id uuid primary key default gen_random_uuid(),
+  token text unique not null,
+  created_by text not null,
+  created_at timestamptz not null default now(),
+  expires_at timestamptz not null,
+  used_at timestamptz
+);
+
+alter table admin_invites enable row level security;
+
+-- No policies: only ever touched via the service_role key from server-side
+-- API routes. The invite page looks up a row by its unguessable token, which
+-- is the actual access control, not RLS.

@@ -27,10 +27,10 @@ export default async function AdminPage() {
               New Post
             </Link>
             <Link
-              href="/admin/setup"
+              href="/admin/invite"
               className="border-2 border-black dark:border-white text-black dark:text-white rounded-lg px-4 py-2 font-bold text-sm"
             >
-              Add Admin
+              Invite Admin
             </Link>
             <LogoutButton />
           </div>
