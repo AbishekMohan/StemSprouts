@@ -108,6 +108,11 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/news" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
+                    News
+                  </Link>
+                </li>
+                <li>
                   <Link href="/locations" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
                     Locations
                   </Link>

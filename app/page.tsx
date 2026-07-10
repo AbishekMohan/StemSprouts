@@ -4,6 +4,7 @@ import { LogoMarquee } from "@/components/logo-marquee"
 import { AboutSection } from "@/components/about-section"
 import { KenyaSection } from "@/components/kenya-section"
 import { PortfolioSection } from "@/components/portfolio-section"
+import { NewsTeaser } from "@/components/news-teaser"
 import { ExperienceSection } from "@/components/experience-section"
 import { FounderSection } from "@/components/founder-section"
 import { ContactSection } from "@/components/contact-section"
@@ -19,6 +20,7 @@ export default function Home() {
       <LogoMarquee />
       <ExperienceSection />
       <PortfolioSection />
+      <NewsTeaser />
       <FounderSection />
       <ContactSection />
       <Footer />
