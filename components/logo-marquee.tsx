@@ -9,6 +9,7 @@ const sponsors = [
   { src: "/partnerlogos/TEDxJohnsCreekLogo.jpeg", alt: "TEDx Johns Creek" },
   { src: "/partnerlogos/minoritiesinstem.png", alt: "Minorities in STEM" },
   { src: "/partnerlogos/gatech-ceismc.jpeg", alt: "Georgia Tech CEISMC" },
+  { src: "/partnerlogos/mgcy.jpeg", alt: "Major Group for Children and Youth" },
 ]
 
 export function LogoMarquee() {
