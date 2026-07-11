@@ -24,6 +24,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Slug and title are required" }, { status: 400 })
   }
 
+  const normalizedCategory = typeof category === "string" ? category.trim().toLowerCase() : ""
+
   const supabase = getSupabaseAdmin()
   const { data, error } = await supabase
     .from("posts")
@@ -32,7 +34,7 @@ export async function POST(req: NextRequest) {
       title,
       excerpt: typeof excerpt === "string" ? excerpt : "",
       content: typeof content === "string" ? content : "",
-      category: category === "research" ? "research" : "news",
+      category: normalizedCategory || "news",
       author: typeof author === "string" && author ? author : "STEM Sprouts",
       published: !!published,
       published_at: published ? new Date().toISOString() : null,

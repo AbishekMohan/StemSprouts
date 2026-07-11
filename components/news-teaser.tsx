@@ -2,6 +2,7 @@ import Link from "next/link"
 import { ArrowRight, Newspaper } from "lucide-react"
 import { PopIn } from "@/components/pop-in"
 import { supabasePublic } from "@/lib/supabase-public"
+import { formatCategory } from "@/lib/format-category"
 
 async function getLatestPosts() {
   const { data } = await supabasePublic
@@ -46,9 +47,9 @@ export async function NewsTeaser() {
                 >
                   <Newspaper className="w-5 h-5 text-black" />
                 </div>
-                {post.category === "research" && (
+                {post.category !== "news" && (
                   <span className="inline-block bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full mb-2 w-fit">
-                    Research
+                    {formatCategory(post.category)}
                   </span>
                 )}
                 <h3 className="font-bold text-black dark:text-white mb-2">{post.title}</h3>

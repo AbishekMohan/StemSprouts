@@ -28,6 +28,8 @@ export async function PUT(req: NextRequest, { params }: Params) {
     return NextResponse.json({ error: "Slug and title are required" }, { status: 400 })
   }
 
+  const normalizedCategory = typeof category === "string" ? category.trim().toLowerCase() : ""
+
   const supabase = getSupabaseAdmin()
   const { data: existing } = await supabase.from("posts").select("published_at").eq("id", id).single()
 
@@ -38,7 +40,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
       title,
       excerpt: typeof excerpt === "string" ? excerpt : "",
       content: typeof content === "string" ? content : "",
-      category: category === "research" ? "research" : "news",
+      category: normalizedCategory || "news",
       author: typeof author === "string" && author ? author : "STEM Sprouts",
       published: !!published,
       published_at: published ? (existing?.published_at ?? new Date().toISOString()) : null,

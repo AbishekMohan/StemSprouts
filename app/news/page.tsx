@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/page-header"
 import { Footer } from "@/components/footer"
 import { PopIn } from "@/components/pop-in"
 import { supabasePublic } from "@/lib/supabase-public"
+import { formatCategory } from "@/lib/format-category"
 
 export const metadata: Metadata = {
   title: "News - STEM Sprouts",
@@ -61,9 +62,9 @@ export default async function NewsPage() {
                 className="block bg-white dark:bg-black border-[3px] border-black dark:border-white rounded-[24px] p-6 md:p-8 hover:shadow-[6px_6px_0px_0px_rgba(34,197,94,1)] transition-shadow"
               >
                 <div className="flex items-center gap-3 mb-3 flex-wrap">
-                  {post.category === "research" && (
+                  {post.category !== "news" && (
                     <span className="inline-block bg-[#22C55E] text-black text-xs font-bold px-3 py-1 rounded-full">
-                      Research
+                      {formatCategory(post.category)}
                     </span>
                   )}
                   <span className="text-xs text-gray-500 dark:text-gray-400">

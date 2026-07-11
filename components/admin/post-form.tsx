@@ -9,7 +9,7 @@ type PostInput = {
   title: string
   excerpt: string
   content: string
-  category: "news" | "research"
+  category: string
   author: string
   published: boolean
 }
@@ -22,7 +22,7 @@ function slugify(value: string) {
     .replace(/(^-|-$)/g, "")
 }
 
-export function PostForm({ initial }: { initial?: PostInput }) {
+export function PostForm({ initial, categories = [] }: { initial?: PostInput; categories?: string[] }) {
   const router = useRouter()
   const isEditing = Boolean(initial?.id)
   const [form, setForm] = useState<PostInput>(
@@ -98,15 +98,22 @@ export function PostForm({ initial }: { initial?: PostInput }) {
         <label className="block text-sm font-semibold mb-1 text-black dark:text-white" htmlFor="post-category">
           Category
         </label>
-        <select
+        <input
           id="post-category"
+          list="post-category-options"
           value={form.category}
-          onChange={(e) => setForm((f) => ({ ...f, category: e.target.value as "news" | "research" }))}
+          onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
           className="w-full border-2 border-black dark:border-white rounded-lg px-3 py-2 bg-white dark:bg-black text-black dark:text-white"
-        >
-          <option value="news">News</option>
-          <option value="research">Research</option>
-        </select>
+          placeholder="news"
+        />
+        <datalist id="post-category-options">
+          {categories.map((c) => (
+            <option key={c} value={c} />
+          ))}
+        </datalist>
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+          Pick an existing category or type a new one. Leave blank for "news".
+        </p>
       </div>
 
       <div>

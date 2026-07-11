@@ -2,6 +2,7 @@ import Link from "next/link"
 import { getSupabaseAdmin } from "@/lib/supabase-admin"
 import { LogoutButton } from "@/components/admin/logout-button"
 import { DeletePostButton } from "@/components/admin/delete-post-button"
+import { formatCategory } from "@/lib/format-category"
 
 export const dynamic = "force-dynamic"
 
@@ -51,9 +52,9 @@ export default async function AdminPage() {
                       Draft
                     </span>
                   )}
-                  {post.category === "research" && (
+                  {post.category !== "news" && (
                     <span className="ml-2 text-[10px] uppercase font-bold bg-[#22C55E] text-black rounded-full px-2 py-0.5 align-middle">
-                      Research
+                      {formatCategory(post.category)}
                     </span>
                   )}
                 </p>
