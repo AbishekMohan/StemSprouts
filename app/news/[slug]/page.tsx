@@ -46,7 +46,15 @@ export default async function NewsPostPage({ params }: Props) {
             </span>
           </div>
           <h1 className="text-3xl md:text-5xl font-bold text-black dark:text-white mb-4 leading-tight">{post.title}</h1>
-          <p className="text-gray-500 dark:text-gray-400 mb-10">By {post.author}</p>
+          <p className="text-gray-500 dark:text-gray-400 mb-6">By {post.author}</p>
+          {post.image_url && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={post.image_url}
+              alt=""
+              className="w-full max-h-[28rem] object-cover rounded-2xl border-[3px] border-black dark:border-white mb-10"
+            />
+          )}
           <div className="text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap text-base md:text-lg">
             {post.content}
           </div>

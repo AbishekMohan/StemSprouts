@@ -20,6 +20,7 @@ type Post = {
   title: string
   excerpt: string
   category: string
+  image_url: string | null
   author: string
   published_at: string
 }
@@ -27,7 +28,7 @@ type Post = {
 async function getPosts(): Promise<Post[]> {
   const { data, error } = await supabasePublic
     .from("posts")
-    .select("id, slug, title, excerpt, category, author, published_at")
+    .select("id, slug, title, excerpt, category, image_url, author, published_at")
     .eq("published", true)
     .order("published_at", { ascending: false })
 
@@ -59,24 +60,34 @@ export default async function NewsPage() {
             <PopIn key={post.id} delay={(index % 4) * 100}>
               <Link
                 href={`/news/${post.slug}`}
-                className="block bg-white dark:bg-black border-[3px] border-black dark:border-white rounded-[24px] p-6 md:p-8 hover:shadow-[6px_6px_0px_0px_rgba(34,197,94,1)] transition-shadow"
+                className="flex flex-col md:flex-row gap-6 bg-white dark:bg-black border-[3px] border-black dark:border-white rounded-[24px] p-6 md:p-8 hover:shadow-[6px_6px_0px_0px_rgba(34,197,94,1)] transition-shadow"
               >
-                <div className="flex items-center gap-3 mb-3 flex-wrap">
-                  {post.category !== "news" && (
-                    <span className="inline-block bg-[#22C55E] text-black text-xs font-bold px-3 py-1 rounded-full">
-                      {formatCategory(post.category)}
+                {post.image_url && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={post.image_url}
+                    alt=""
+                    className="w-full md:w-48 h-40 md:h-auto object-cover rounded-xl border-2 border-black dark:border-white flex-shrink-0"
+                  />
+                )}
+                <div className="min-w-0">
+                  <div className="flex items-center gap-3 mb-3 flex-wrap">
+                    {post.category !== "news" && (
+                      <span className="inline-block bg-[#22C55E] text-black text-xs font-bold px-3 py-1 rounded-full">
+                        {formatCategory(post.category)}
+                      </span>
+                    )}
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                      {new Date(post.published_at).toLocaleDateString(undefined, {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
                     </span>
-                  )}
-                  <span className="text-xs text-gray-500 dark:text-gray-400">
-                    {new Date(post.published_at).toLocaleDateString(undefined, {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
+                  </div>
+                  <h2 className="text-xl md:text-2xl font-bold text-black dark:text-white mb-2">{post.title}</h2>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{post.excerpt}</p>
                 </div>
-                <h2 className="text-xl md:text-2xl font-bold text-black dark:text-white mb-2">{post.title}</h2>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{post.excerpt}</p>
               </Link>
             </PopIn>
           ))}

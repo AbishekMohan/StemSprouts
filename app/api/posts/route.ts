@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
   if (unauthorized) return unauthorized
 
   const body = await req.json().catch(() => null)
-  const { slug, title, excerpt, content, category, author, published } = body ?? {}
+  const { slug, title, excerpt, content, category, imageUrl, author, published } = body ?? {}
 
   if (typeof slug !== "string" || !slug || typeof title !== "string" || !title) {
     return NextResponse.json({ error: "Slug and title are required" }, { status: 400 })
@@ -35,6 +35,7 @@ export async function POST(req: NextRequest) {
       excerpt: typeof excerpt === "string" ? excerpt : "",
       content: typeof content === "string" ? content : "",
       category: normalizedCategory || "news",
+      image_url: typeof imageUrl === "string" && imageUrl ? imageUrl : null,
       author: typeof author === "string" && author ? author : "STEM Sprouts",
       published: !!published,
       published_at: published ? new Date().toISOString() : null,
