@@ -34,7 +34,7 @@ npm run start
 The `/news` blog and `/admin` editor are backed by Supabase, with a JWT cookie for admin auth.
 Admin accounts (username + bcrypt password hash) live in the `admin_users` table, not an env var.
 
-1. In the Supabase project's SQL editor, run [`supabase/schema.sql`](supabase/schema.sql) to create the `posts`, `admin_users`, and `admin_invites` tables.
+1. In the Supabase project's SQL editor, run [`supabase/schema.sql`](supabase/schema.sql) to create the `posts`, `admin_users`, and `admin_invites` tables. Also create a public Storage bucket named `post-images` (Storage > New bucket > Public), used for post cover images.
 2. Fill in `.env.local` (see `.env.local` for the placeholders already there):
    - `SUPABASE_SERVICE_ROLE_KEY` — Supabase dashboard > Project Settings > API > service_role secret. Server-only, never expose to the client.
    - `JWT_SECRET` — already generated; keep it secret and consistent across environments (dev + Vercel).
