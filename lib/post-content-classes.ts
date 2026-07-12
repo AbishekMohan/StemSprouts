@@ -1,0 +1,2 @@
+export const POST_CONTENT_CLASSES =
+  "[&_p]:mb-4 [&_p:last-child]:mb-0 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:mt-6 [&_h3]:mb-2 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:pl-6 [&_ol]:pl-6 [&_li]:mb-1 [&_blockquote]:border-l-4 [&_blockquote]:border-[#22C55E] [&_blockquote]:pl-4 [&_blockquote]:italic [&_a]:underline [&_a]:text-[#15803d] dark:[&_a]:text-[#22C55E] [&_strong]:font-bold"

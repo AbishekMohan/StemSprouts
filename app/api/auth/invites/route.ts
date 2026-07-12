@@ -1,15 +1,14 @@
 import { NextRequest, NextResponse } from "next/server"
-import { verifyAdminToken } from "@/lib/auth"
 import { requireAdmin } from "@/lib/require-admin"
 import { createInvite } from "@/lib/admin-invites"
 
 export async function POST(req: NextRequest) {
-  const unauthorized = await requireAdmin(req)
-  if (unauthorized) return unauthorized
+  const admin = await requireAdmin(req, ["main_admin"])
+  if (admin instanceof NextResponse) return admin
 
-  const token = req.cookies.get("admin_token")!.value
-  const payload = (await verifyAdminToken(token))!
+  const body = await req.json().catch(() => null)
+  const role = body?.role === "main_admin" ? "main_admin" : "chapter_lead"
 
-  const invite = await createInvite(payload.username)
-  return NextResponse.json({ token: invite.token, expiresAt: invite.expiresAt })
+  const invite = await createInvite(admin.username, role)
+  return NextResponse.json({ token: invite.token, role: invite.role, expiresAt: invite.expiresAt })
 }

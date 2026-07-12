@@ -48,9 +48,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "That username is already taken" }, { status: 409 })
   }
 
-  const user = await createAdminUser(username, password)
+  const user = await createAdminUser(username, password, "main_admin")
 
-  const token = await signAdminToken(user.username)
+  const token = await signAdminToken({ id: user.id, username: user.username, role: user.role })
   const res = NextResponse.json({ success: true })
   res.cookies.set("admin_token", token, {
     httpOnly: true,

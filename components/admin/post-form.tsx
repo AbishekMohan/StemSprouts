@@ -2,6 +2,9 @@
 
 import { useState, type ChangeEvent, type FormEvent } from "react"
 import { useRouter } from "next/navigation"
+import { RichTextEditor } from "@/components/admin/rich-text-editor"
+import type { AdminRole } from "@/lib/auth"
+import type { PostStatus } from "@/lib/post-status"
 
 type PostInput = {
   id?: string
@@ -12,7 +15,7 @@ type PostInput = {
   category: string
   imageUrl: string
   author: string
-  published: boolean
+  status: PostStatus
 }
 
 function slugify(value: string) {
@@ -23,9 +26,18 @@ function slugify(value: string) {
     .replace(/(^-|-$)/g, "")
 }
 
-export function PostForm({ initial, categories = [] }: { initial?: PostInput; categories?: string[] }) {
+export function PostForm({
+  initial,
+  categories = [],
+  role,
+}: {
+  initial?: PostInput
+  categories?: string[]
+  role: AdminRole
+}) {
   const router = useRouter()
   const isEditing = Boolean(initial?.id)
+  const isMainAdmin = role === "main_admin"
   const [form, setForm] = useState<PostInput>(
     initial ?? {
       slug: "",
@@ -35,7 +47,7 @@ export function PostForm({ initial, categories = [] }: { initial?: PostInput; ca
       category: "news",
       imageUrl: "",
       author: "STEM Sprouts",
-      published: false,
+      status: "draft",
     },
   )
   const [saving, setSaving] = useState(false)
@@ -65,8 +77,7 @@ export function PostForm({ initial, categories = [] }: { initial?: PostInput; ca
     setForm((f) => ({ ...f, imageUrl: data.url }))
   }
 
-  async function handleSubmit(e: FormEvent) {
-    e.preventDefault()
+  async function save(status: PostStatus) {
     setSaving(true)
     setError("")
 
@@ -76,7 +87,7 @@ export function PostForm({ initial, categories = [] }: { initial?: PostInput; ca
     const res = await fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
+      body: JSON.stringify({ ...form, status }),
     })
 
     setSaving(false)
@@ -89,6 +100,11 @@ export function PostForm({ initial, categories = [] }: { initial?: PostInput; ca
 
     router.push("/admin")
     router.refresh()
+  }
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault()
+    save(form.status)
   }
 
   return (
@@ -212,35 +228,63 @@ export function PostForm({ initial, categories = [] }: { initial?: PostInput; ca
       </div>
 
       <div>
-        <label className="block text-sm font-semibold mb-1 text-black dark:text-white" htmlFor="post-content">
-          Content
-        </label>
-        <textarea
-          id="post-content"
-          value={form.content}
-          onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))}
-          rows={14}
-          className="w-full border-2 border-black dark:border-white rounded-lg px-3 py-2 bg-white dark:bg-black text-black dark:text-white font-mono text-sm"
-          placeholder="Plain text or paragraphs, separated by blank lines"
-        />
+        <label className="block text-sm font-semibold mb-2 text-black dark:text-white">Content</label>
+        <RichTextEditor value={form.content} onChange={(html) => setForm((f) => ({ ...f, content: html }))} />
       </div>
 
-      <label className="flex items-center gap-2 text-sm font-semibold text-black dark:text-white">
-        <input
-          type="checkbox"
-          checked={form.published}
-          onChange={(e) => setForm((f) => ({ ...f, published: e.target.checked }))}
-        />
-        Published (visible on the site)
-      </label>
-
-      <button
-        type="submit"
-        disabled={saving}
-        className="bg-[#22C55E] text-black hover:bg-[#1ea750] rounded-lg px-6 py-3 font-bold disabled:opacity-60"
-      >
-        {saving ? "Saving..." : "Save"}
-      </button>
+      {isMainAdmin ? (
+        <>
+          <div>
+            <label className="block text-sm font-semibold mb-1 text-black dark:text-white" htmlFor="post-status">
+              Status
+            </label>
+            <select
+              id="post-status"
+              value={form.status}
+              onChange={(e) => setForm((f) => ({ ...f, status: e.target.value as PostStatus }))}
+              className="w-full border-2 border-black dark:border-white rounded-lg px-3 py-2 bg-white dark:bg-black text-black dark:text-white"
+            >
+              <option value="draft">Draft</option>
+              <option value="pending">Pending Review</option>
+              <option value="published">Published (visible on the site)</option>
+            </select>
+          </div>
+          <button
+            type="submit"
+            disabled={saving}
+            className="bg-[#22C55E] text-black hover:bg-[#1ea750] rounded-lg px-6 py-3 font-bold disabled:opacity-60"
+          >
+            {saving ? "Saving..." : "Save"}
+          </button>
+        </>
+      ) : (
+        <div className="flex flex-wrap gap-3">
+          <button
+            type="button"
+            disabled={saving}
+            onClick={() => save("draft")}
+            className="border-2 border-black dark:border-white text-black dark:text-white rounded-lg px-6 py-3 font-bold disabled:opacity-60"
+          >
+            {saving ? "Saving..." : "Save Draft"}
+          </button>
+          <button
+            type="button"
+            disabled={saving}
+            onClick={() => save("pending")}
+            className="bg-[#22C55E] text-black hover:bg-[#1ea750] rounded-lg px-6 py-3 font-bold disabled:opacity-60"
+          >
+            {saving ? "Submitting..." : "Submit for Review"}
+          </button>
+          {form.status === "pending" && (
+            <p className="w-full text-xs text-amber-600 dark:text-amber-400">Waiting on a main admin to review.</p>
+          )}
+          {form.status === "published" && (
+            <p className="w-full text-xs text-gray-500 dark:text-gray-400">
+              This post is live. Saving changes will pull it back to "Pending Review" until a main admin approves them again.
+            </p>
+          )}
+        </div>
+      )}
     </form>
   )
 }

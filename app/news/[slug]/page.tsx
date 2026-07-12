@@ -4,6 +4,8 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { supabasePublic } from "@/lib/supabase-public"
 import { formatCategory } from "@/lib/format-category"
+import { POST_CONTENT_CLASSES } from "@/lib/post-content-classes"
+import { toDisplayHtml } from "@/lib/render-post-content"
 
 export const revalidate = 60
 
@@ -55,9 +57,10 @@ export default async function NewsPostPage({ params }: Props) {
               className="w-full max-h-[28rem] object-cover rounded-2xl border-[3px] border-black dark:border-white mb-10"
             />
           )}
-          <div className="text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap text-base md:text-lg">
-            {post.content}
-          </div>
+          <div
+            className={`text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg ${POST_CONTENT_CLASSES}`}
+            dangerouslySetInnerHTML={{ __html: toDisplayHtml(post.content) }}
+          />
         </article>
       </section>
       <Footer />
