@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer"
 import { PopIn } from "@/components/pop-in"
 import { supabasePublic } from "@/lib/supabase-public"
 import { formatCategory } from "@/lib/format-category"
+import { InstagramEmbed } from "@/components/instagram-embed"
 
 export const metadata: Metadata = {
   title: "News - STEM Sprouts",
@@ -91,6 +92,15 @@ export default async function NewsPage() {
               </Link>
             </PopIn>
           ))}
+        </div>
+      </section>
+
+      <section className="container mx-auto px-4 pb-16 md:pb-24" aria-labelledby="instagram-heading">
+        <div className="max-w-4xl mx-auto">
+          <h2 id="instagram-heading" className="text-2xl md:text-3xl font-bold text-black dark:text-white text-center mb-8">
+            Follow us on <span className="bg-[#22C55E] text-black px-3 py-1 inline-block">Instagram</span>
+          </h2>
+          <InstagramEmbed />
         </div>
       </section>
 
