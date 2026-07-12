@@ -8,6 +8,7 @@ create table if not exists posts (
   excerpt text not null default '',
   content text not null default '',
   category text not null default 'news' check (char_length(trim(category)) > 0),
+  image_url text,
   author text not null default 'STEM Sprouts',
   published boolean not null default false,
   published_at timestamptz,

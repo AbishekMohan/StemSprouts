@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, type FormEvent } from "react"
+import { useState, type ChangeEvent, type FormEvent } from "react"
 import { useRouter } from "next/navigation"
 
 type PostInput = {
@@ -10,6 +10,7 @@ type PostInput = {
   excerpt: string
   content: string
   category: string
+  imageUrl: string
   author: string
   published: boolean
 }
@@ -26,10 +27,43 @@ export function PostForm({ initial, categories = [] }: { initial?: PostInput; ca
   const router = useRouter()
   const isEditing = Boolean(initial?.id)
   const [form, setForm] = useState<PostInput>(
-    initial ?? { slug: "", title: "", excerpt: "", content: "", category: "news", author: "STEM Sprouts", published: false },
+    initial ?? {
+      slug: "",
+      title: "",
+      excerpt: "",
+      content: "",
+      category: "news",
+      imageUrl: "",
+      author: "STEM Sprouts",
+      published: false,
+    },
   )
   const [saving, setSaving] = useState(false)
+  const [uploading, setUploading] = useState(false)
   const [error, setError] = useState("")
+
+  async function handleImageChange(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    setUploading(true)
+    setError("")
+
+    const body = new FormData()
+    body.append("file", file)
+
+    const res = await fetch("/api/posts/upload", { method: "POST", body })
+    setUploading(false)
+
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      setError(data.error || "Image upload failed")
+      return
+    }
+
+    const data = await res.json()
+    setForm((f) => ({ ...f, imageUrl: data.url }))
+  }
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
@@ -113,6 +147,41 @@ export function PostForm({ initial, categories = [] }: { initial?: PostInput; ca
         </datalist>
         <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
           Pick an existing category or type a new one. Leave blank for "news".
+        </p>
+      </div>
+
+      <div>
+        <label className="block text-sm font-semibold mb-1 text-black dark:text-white" htmlFor="post-image">
+          Cover image
+        </label>
+        {form.imageUrl && (
+          <div className="relative mb-3 w-fit">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={form.imageUrl}
+              alt=""
+              className="max-h-48 rounded-lg border-2 border-black dark:border-white"
+            />
+            <button
+              type="button"
+              onClick={() => setForm((f) => ({ ...f, imageUrl: "" }))}
+              className="absolute -top-2 -right-2 bg-black dark:bg-white text-white dark:text-black text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center"
+              aria-label="Remove image"
+            >
+              &times;
+            </button>
+          </div>
+        )}
+        <input
+          id="post-image"
+          type="file"
+          accept="image/png,image/jpeg,image/webp,image/gif"
+          onChange={handleImageChange}
+          disabled={uploading}
+          className="w-full border-2 border-black dark:border-white rounded-lg px-3 py-2 bg-white dark:bg-black text-black dark:text-white text-sm file:mr-3 file:py-1 file:px-3 file:rounded-md file:border-0 file:bg-[#22C55E] file:text-black file:font-bold"
+        />
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+          {uploading ? "Uploading..." : "Optional. PNG, JPEG, WebP, or GIF, up to 5MB."}
         </p>
       </div>
 

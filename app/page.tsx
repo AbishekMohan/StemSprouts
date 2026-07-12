@@ -10,6 +10,8 @@ import { FounderSection } from "@/components/founder-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 
+export const revalidate = 60
+
 export default function Home() {
   return (
     <main id="main-content" className="min-h-screen bg-white dark:bg-black">

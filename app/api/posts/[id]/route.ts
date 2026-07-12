@@ -22,7 +22,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
 
   const { id } = await params
   const body = await req.json().catch(() => null)
-  const { slug, title, excerpt, content, category, author, published } = body ?? {}
+  const { slug, title, excerpt, content, category, imageUrl, author, published } = body ?? {}
 
   if (typeof slug !== "string" || !slug || typeof title !== "string" || !title) {
     return NextResponse.json({ error: "Slug and title are required" }, { status: 400 })
@@ -41,6 +41,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
       excerpt: typeof excerpt === "string" ? excerpt : "",
       content: typeof content === "string" ? content : "",
       category: normalizedCategory || "news",
+      image_url: typeof imageUrl === "string" && imageUrl ? imageUrl : null,
       author: typeof author === "string" && author ? author : "STEM Sprouts",
       published: !!published,
       published_at: published ? (existing?.published_at ?? new Date().toISOString()) : null,
