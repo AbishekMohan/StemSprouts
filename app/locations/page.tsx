@@ -19,6 +19,7 @@ const chapters: (MapChapter & { flag: string; badge?: string })[] = [
   { name: "Osborne High School", region: "Georgia, USA", flag: "🇺🇸", coordinates: [-84.5499, 33.9526] },
   { name: "Dublin", region: "Ohio, USA", flag: "🇺🇸", coordinates: [-83.1141, 40.0992] },
   { name: "Fremont", region: "California, USA", flag: "🇺🇸", coordinates: [-121.9886, 37.5485] },
+  { name: "Tampa", region: "Florida, USA", flag: "🇺🇸", coordinates: [-82.4572, 27.9506] },
   { name: "West Bengal", region: "India", flag: "🇮🇳", coordinates: [88.3639, 22.5726] },
   { name: "Siaya", region: "Kenya", flag: "🇰🇪", coordinates: [34.2881, 0.0607] },
 ]
