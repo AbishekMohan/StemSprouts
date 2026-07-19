@@ -1,6 +1,7 @@
 import { Facebook, Instagram, Linkedin, Github, Mail, Rocket } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { TikTokIcon } from "@/components/icons/tiktok-icon"
 
 export function Footer() {
   return (
@@ -48,6 +49,15 @@ export function Footer() {
                   className="w-10 h-10 bg-[#22C55E] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
                 >
                   <Instagram className="w-5 h-5 text-black" />
+                </a>
+                <a
+                  href="https://www.tiktok.com/@stemsprouts"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit our TikTok"
+                  className="w-10 h-10 bg-[#22C55E] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
+                >
+                  <TikTokIcon className="w-5 h-5 text-black" />
                 </a>
                 <a
                   href="https://www.facebook.com/share/16ywQJWuVR/?mibextid=wwXIfr"
