@@ -25,10 +25,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "That username is already taken" }, { status: 409 })
   }
 
-  const user = await createAdminUser(username, password)
+  const user = await createAdminUser(username, password, invite.role)
   await markInviteUsed(invite.id)
 
-  const jwt = await signAdminToken(user.username)
+  const jwt = await signAdminToken({ id: user.id, username: user.username, role: user.role })
   const res = NextResponse.json({ success: true })
   res.cookies.set("admin_token", jwt, {
     httpOnly: true,

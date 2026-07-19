@@ -7,8 +7,8 @@ const ALLOWED_TYPES = new Set(["image/png", "image/jpeg", "image/webp", "image/g
 const MAX_SIZE = 5 * 1024 * 1024
 
 export async function POST(req: NextRequest) {
-  const unauthorized = await requireAdmin(req)
-  if (unauthorized) return unauthorized
+  const admin = await requireAdmin(req)
+  if (admin instanceof NextResponse) return admin
 
   const formData = await req.formData().catch(() => null)
   const file = formData?.get("file")
