@@ -8,6 +8,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: "/news", priority: 0.9, changeFrequency: "daily" },
   { path: "/resources", priority: 0.6, changeFrequency: "monthly" },
   { path: "/partner", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/policy-fellowship", priority: 0.6, changeFrequency: "monthly" },
   { path: "/locations", priority: 0.6, changeFrequency: "monthly" },
   { path: "/pinboard", priority: 0.5, changeFrequency: "monthly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
