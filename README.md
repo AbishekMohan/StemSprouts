@@ -70,3 +70,16 @@ These steps need to be done once, by hand, in Google's dashboards — there's no
    - In Search Console (Settings > Users and permissions), add that service account's email as an **Owner** of the `stem-sprouts.org` property.
    - Set `GOOGLE_INDEXING_SERVICE_ACCOUNT_JSON` (the full key file contents, minified to one line) in `.env.local` and in Vercel. Until it's set, publishing just logs a console warning and skips the ping — it never blocks a publish.
 4. To confirm it's working: publish a post, then check it in Search Console's URL Inspection tool — it should show as crawled within a day or two.
+
+## Newsletter (Resend)
+
+Anyone can subscribe on `/news` (`components/newsletter-signup.tsx` → `POST /api/newsletter/subscribe`). Whenever a post is newly published — directly or via a main admin approving a chapter lead's pending post — everyone subscribed gets emailed automatically (`lib/newsletter.ts`, wired into the same three places as the Indexing API ping in `app/api/posts/*`). Editing a post that's already live does **not** re-trigger an email.
+
+Subscribers and sends are managed entirely by Resend — there's no subscriber table in Supabase. The first subscribe (or the first publish, whichever happens first) auto-creates a Resend **Segment** named "STEM Sprouts News"; new subscribers get added to it, and publishing creates + sends a **Broadcast** to that segment. Unsubscribe links are handled by Resend automatically.
+
+Setup:
+
+1. In [Resend](https://resend.com/domains), add and verify the sending domain (`news.stem-sprouts.org` — needs DNS records added wherever the domain is managed).
+2. Create an API key (Resend dashboard > API Keys) and set `RESEND_API_KEY` in `.env.local` and in Vercel.
+3. Optionally set `RESEND_FROM_EMAIL` to override the default sender (`STEM Sprouts <no-reply@news.stem-sprouts.org>`).
+4. Until `RESEND_API_KEY` is set, both the signup form and the send-on-publish hook no-op safely (signup returns a "not set up yet" error; publishing just skips the email) — neither blocks a publish.

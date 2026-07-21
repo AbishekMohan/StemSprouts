@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { requireAdmin } from "@/lib/require-admin"
 import { getSupabaseAdmin } from "@/lib/supabase-admin"
 import { pingGoogleIndexing } from "@/lib/google-indexing"
+import { sendNewsletterForPost } from "@/lib/newsletter"
 import { SITE_URL } from "@/lib/site"
 
 type Params = { params: Promise<{ id: string }> }
@@ -24,6 +25,7 @@ export async function POST(req: NextRequest, { params }: Params) {
     return NextResponse.json({ error: "Post not found" }, { status: 404 })
   }
 
+  const wasPublished = Boolean(existing.published_at)
   const status = action === "approve" ? "published" : "draft"
   const publishedAt = action === "approve" ? existing.published_at ?? new Date().toISOString() : null
 
@@ -38,6 +40,9 @@ export async function POST(req: NextRequest, { params }: Params) {
 
   if (status === "published") {
     await pingGoogleIndexing(`${SITE_URL}/news/${data.slug}`)
+    if (!wasPublished) {
+      await sendNewsletterForPost({ title: data.title, excerpt: data.excerpt, slug: data.slug, image_url: data.image_url })
+    }
   }
 
   return NextResponse.json({ post: data })

@@ -4,6 +4,7 @@ import { getSupabaseAdmin } from "@/lib/supabase-admin"
 import { resolvePostWrite } from "@/lib/post-status"
 import { sanitizePostContent } from "@/lib/sanitize-post-content"
 import { pingGoogleIndexing } from "@/lib/google-indexing"
+import { sendNewsletterForPost } from "@/lib/newsletter"
 import { SITE_URL } from "@/lib/site"
 
 export async function GET(req: NextRequest) {
@@ -58,6 +59,7 @@ export async function POST(req: NextRequest) {
 
   if (status === "published") {
     await pingGoogleIndexing(`${SITE_URL}/news/${data.slug}`)
+    await sendNewsletterForPost({ title: data.title, excerpt: data.excerpt, slug: data.slug, image_url: data.image_url })
   }
 
   return NextResponse.json({ post: data })
