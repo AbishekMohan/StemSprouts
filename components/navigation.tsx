@@ -11,7 +11,7 @@ const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Locations", href: "/locations" },
   { label: "Partner", href: "/partner" },
-  { label: "Policy Fellowship", href: "/policy-fellowship" },
+  { label: "Policy", href: "/policy-fellowship" },
   { label: "Pinboard", href: "/pinboard" },
   { label: "Resources", href: "/resources" },
   { label: "News", href: "/news" },
