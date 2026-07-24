@@ -7,6 +7,7 @@ import { PopIn } from "@/components/pop-in"
 import { supabasePublic } from "@/lib/supabase-public"
 import { formatCategory } from "@/lib/format-category"
 import { InstagramEmbed } from "@/components/instagram-embed"
+import { NewsletterSignup } from "@/components/newsletter-signup"
 
 export const metadata: Metadata = {
   title: "News - STEM Sprouts",
@@ -95,6 +96,20 @@ export default async function NewsPage() {
               </Link>
             </PopIn>
           ))}
+        </div>
+      </section>
+
+      <section className="container mx-auto px-4 pb-16 md:pb-24" aria-labelledby="newsletter-heading">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-black border-4 border-black dark:border-white rounded-3xl p-8 md:p-12 text-center">
+            <h2 id="newsletter-heading" className="text-2xl md:text-3xl font-bold text-white mb-3">
+              Get new posts in your <span className="bg-[#22C55E] text-black px-3 py-1 inline-block">inbox</span>
+            </h2>
+            <p className="text-gray-300 mb-8 max-w-xl mx-auto">
+              Subscribe to hear about new news, research, and chapter updates as soon as they're posted.
+            </p>
+            <NewsletterSignup />
+          </div>
         </div>
       </section>
 
