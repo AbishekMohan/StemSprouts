@@ -192,7 +192,11 @@ export function Footer() {
           <div className="border-t border-gray-300 dark:border-gray-800 pt-8 text-center text-gray-600 dark:text-gray-400 text-sm space-y-2">
             <p>This site is built to meet accessibility standards so STEM education is reachable for everyone.</p>
             <p>
-              &copy; 2026 STEM Sprouts | 501(c)(3) &middot;{" "}
+              &copy; 2026 STEM Sprouts &middot; A fiscally sponsored project of{" "}
+              <Link href="/legal" className="underline hover:text-black dark:hover:text-white transition-colors">
+                The Hack Foundation 501(c)(3)
+              </Link>{" "}
+              &middot;{" "}
               <Link href="/privacy" className="underline hover:text-black dark:hover:text-white transition-colors">
                 Privacy Policy
               </Link>
