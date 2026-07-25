@@ -7,9 +7,14 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null)
   const email = typeof body?.email === "string" ? body.email.trim().toLowerCase() : ""
+  const consent = body?.consent === true
 
   if (!EMAIL_RE.test(email)) {
     return NextResponse.json({ error: "Enter a valid email address" }, { status: 400 })
+  }
+
+  if (!consent) {
+    return NextResponse.json({ error: "Please confirm you'd like to subscribe" }, { status: 400 })
   }
 
   const resend = getResendClient()

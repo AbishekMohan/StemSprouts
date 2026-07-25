@@ -2,6 +2,7 @@ import { Facebook, Instagram, Linkedin, Github, Mail, Rocket } from "lucide-reac
 import Link from "next/link"
 import Image from "next/image"
 import { TikTokIcon } from "@/components/icons/tiktok-icon"
+import { NewsletterSignup } from "@/components/newsletter-signup"
 
 export function Footer() {
   return (
@@ -25,6 +26,18 @@ export function Footer() {
                 <Rocket className="w-5 h-5" aria-hidden="true" />
                 Start a Chapter ↗
               </a>
+            </div>
+          </div>
+
+          <div className="mb-12 md:mb-16">
+            <div className="bg-white border-4 border-black dark:border-white rounded-3xl py-6 px-6 md:py-8 md:px-10 shadow-[6px_6px_0px_0px_rgba(34,197,94,1)]">
+              <h3 className="text-xl md:text-2xl font-bold text-black mb-1">Subscribe to our newsletter</h3>
+              <p className="text-[#393939] text-sm md:text-base mb-6">
+                Get updates on new chapters, resources, and STEM Sprouts news.
+              </p>
+              <div className="max-w-md">
+                <NewsletterSignup />
+              </div>
             </div>
           </div>
 

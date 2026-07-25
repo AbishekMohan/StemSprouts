@@ -108,7 +108,9 @@ export default async function NewsPage() {
             <p className="text-gray-300 mb-8 max-w-xl mx-auto">
               Subscribe to hear about new news, research, and chapter updates as soon as they're posted.
             </p>
-            <NewsletterSignup />
+            <div className="max-w-md mx-auto text-left">
+              <NewsletterSignup variant="dark" />
+            </div>
           </div>
         </div>
       </section>
