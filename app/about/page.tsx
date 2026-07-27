@@ -41,12 +41,22 @@ const team = [
     role: "Head Grant Writer",
     bio: "Secures critical funding and grants to keep our workshops completely free and accessible for more communities globally.",
   },
+  {
+    initials: "TS",
+    name: "Tanishi Srivastava",
+    role: "Head of Social Media Strategy",
+    bio: "Amplifying our message globally to ensure our mission reaches the people who need it most.",
+  },
 ]
 
 const openRoles = [
   {
     title: "Pinboard Developer",
     description: "Work on our open-source virtual circuit builder and help shape the future of our learning platform.",
+  },
+  {
+    title: "Social Media Ambassador",
+    description: "Help create reels/videos for our social media channels to promote STEM education",
   },
 ]
 
