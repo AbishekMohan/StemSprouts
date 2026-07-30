@@ -1,11 +1,9 @@
 "use client"
 
-import { useState } from "react"
-import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps"
-
-const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
-
-const HIGHLIGHTED_COUNTRIES = new Set(["United States of America", "Kenya", "India"])
+import { useEffect } from "react"
+import { MapContainer, TileLayer, Marker, Tooltip, useMap } from "react-leaflet"
+import L from "leaflet"
+import "leaflet/dist/leaflet.css"
 
 export interface MapChapter {
   name: string
@@ -13,77 +11,54 @@ export interface MapChapter {
   coordinates: [number, number]
 }
 
+const chapterIcon = L.divIcon({
+  className: "",
+  html: `<span style="display:block;width:16px;height:16px;border-radius:9999px;background:#22C55E;border:2px solid black;box-shadow:0 0 0 1px white;"></span>`,
+  iconSize: [16, 16],
+  iconAnchor: [8, 8],
+  tooltipAnchor: [0, -8],
+})
+
+function FitToChapters({ chapters }: { chapters: MapChapter[] }) {
+  const map = useMap()
+
+  useEffect(() => {
+    if (chapters.length === 0) return
+    const bounds = L.latLngBounds(chapters.map(({ coordinates: [lng, lat] }) => [lat, lng] as [number, number]))
+    map.fitBounds(bounds, { padding: [32, 32], maxZoom: 5 })
+  }, [chapters, map])
+
+  return null
+}
+
 export function WorldMap({ chapters }: { chapters: MapChapter[] }) {
-  const [active, setActive] = useState<MapChapter | null>(null)
-
   return (
-    <div className="relative">
-      <ComposableMap
-        projection="geoNaturalEarth1"
-        projectionConfig={{ scale: 160 }}
-        className="w-full h-auto"
-        role="group"
-        aria-label="World map showing STEM Sprouts chapter locations. Use the list below for a text version."
+    <div className="w-full aspect-[800/500] rounded-2xl overflow-hidden border-2 border-black dark:border-white">
+      <MapContainer
+        center={[20, 10]}
+        zoom={2}
+        scrollWheelZoom={false}
+        className="w-full h-full dark:[&_.leaflet-tile-pane]:brightness-90 dark:[&_.leaflet-tile-pane]:invert dark:[&_.leaflet-tile-pane]:hue-rotate-180 dark:[&_.leaflet-tile-pane]:contrast-90"
+        aria-label="Map showing STEM Sprouts chapter locations. Use the list below for a text version."
       >
-        <Geographies geography={GEO_URL}>
-          {({ geographies }) =>
-            geographies.map((geo) => {
-              const isHighlighted = HIGHLIGHTED_COUNTRIES.has(geo.properties.name)
-              return (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  aria-hidden="true"
-                  tabIndex={-1}
-                  className={
-                    isHighlighted
-                      ? "fill-[#22C55E]/25 dark:fill-[#22C55E]/20 stroke-black dark:stroke-white outline-none"
-                      : "fill-gray-100 dark:fill-gray-800 stroke-black dark:stroke-white outline-none"
-                  }
-                  style={{
-                    default: { strokeWidth: 0.6 },
-                    hover: { strokeWidth: 0.6 },
-                    pressed: { strokeWidth: 0.6 },
-                  }}
-                />
-              )
-            })
-          }
-        </Geographies>
-
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <FitToChapters chapters={chapters} />
         {chapters.map((chapter) => (
           <Marker
             key={chapter.name}
-            coordinates={chapter.coordinates}
-            onMouseEnter={() => setActive(chapter)}
-            onMouseLeave={() => setActive(null)}
-            onFocus={() => setActive(chapter)}
-            onBlur={() => setActive(null)}
+            position={[chapter.coordinates[1], chapter.coordinates[0]]}
+            icon={chapterIcon}
+            alt={`${chapter.name}, ${chapter.region}`}
           >
-            <circle
-              r={13}
-              className="fill-transparent cursor-pointer"
-              tabIndex={0}
-              role="button"
-              aria-label={`${chapter.name}, ${chapter.region}`}
-            />
-            <circle r={7} className="fill-[#22C55E] stroke-black dark:stroke-white pointer-events-none" strokeWidth={2} />
-            <title>
+            <Tooltip direction="top">
               {chapter.name}, {chapter.region}
-            </title>
+            </Tooltip>
           </Marker>
         ))}
-      </ComposableMap>
-
-      {active && (
-        <div
-          className="pointer-events-none absolute left-1/2 top-2 -translate-x-1/2 bg-black dark:bg-white text-white dark:text-black text-sm font-bold px-4 py-2 rounded-lg border-2 border-[#22C55E] whitespace-nowrap"
-          role="status"
-          aria-live="polite"
-        >
-          {active.name}, {active.region}
-        </div>
-      )}
+      </MapContainer>
     </div>
   )
 }
