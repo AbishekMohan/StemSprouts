@@ -144,12 +144,6 @@ export default function PolicyFellowshipPage() {
             <p className="text-black/80 max-w-xl mx-auto">
               Fill out the application below to tell us about yourself and the policy issue you want to research.
             </p>
-            <p className="mt-6 text-sm text-black/70">
-              Questions first? Email us at{" "}
-              <a href="mailto:hello@stem-sprouts.org" className="font-bold underline">
-                hello@stem-sprouts.org
-              </a>
-            </p>
           </PopIn>
         </div>
       </section>
