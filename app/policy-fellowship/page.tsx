@@ -1,11 +1,10 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { Check, FileText, Users, Megaphone, Landmark, Award, HandHeart } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { PageHeader } from "@/components/page-header"
-import { Button } from "@/components/ui/button"
 import { Footer } from "@/components/footer"
 import { PopIn } from "@/components/pop-in"
+import { PolicyFellowshipForm } from "@/components/policy-fellowship-form"
 
 export const metadata: Metadata = {
   title: "Policy Fellowship - STEM Sprouts",
@@ -139,25 +138,28 @@ export default function PolicyFellowshipPage() {
             </div>
           </PopIn>
 
-          <PopIn className="text-center bg-[#22C55E] border-4 border-black dark:border-white rounded-3xl p-8 md:p-12">
+          <PopIn className="text-center bg-[#22C55E] border-4 border-black dark:border-white rounded-3xl p-8 md:p-12 mb-12">
             <Landmark className="w-10 h-10 text-black mx-auto mb-4" aria-hidden="true" />
             <h3 className="text-2xl md:text-3xl font-bold mb-4 text-black">Ready to Become a Policy Fellow?</h3>
-            <p className="text-black/80 mb-8 max-w-xl mx-auto">
-              We&apos;d love to hear about the issue you want to research. Reach out and we&apos;ll walk you through
-              applying.
+            <p className="text-black/80 max-w-xl mx-auto">
+              Fill out the application below to tell us about yourself and the policy issue you want to research.
             </p>
-            <Link href="/#contact">
-              <Button className="bg-black text-white hover:bg-black/80 rounded-xl px-8 py-6 text-base font-bold h-auto">
-                Get in Touch
-              </Button>
-            </Link>
             <p className="mt-6 text-sm text-black/70">
-              Or email us directly at{" "}
+              Questions first? Email us at{" "}
               <a href="mailto:hello@stem-sprouts.org" className="font-bold underline">
                 hello@stem-sprouts.org
               </a>
             </p>
           </PopIn>
+        </div>
+      </section>
+
+      <section className="container mx-auto px-4 pb-16 md:pb-24" id="apply" aria-labelledby="apply-heading">
+        <div className="max-w-3xl mx-auto">
+          <h2 id="apply-heading" className="sr-only">
+            Policy Fellowship Application
+          </h2>
+          <PolicyFellowshipForm />
         </div>
       </section>
 
