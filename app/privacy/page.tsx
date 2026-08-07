@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer"
 export const metadata: Metadata = {
   title: "Privacy Policy - STEM Sprouts",
   description: "How STEM Sprouts collects, uses, and protects your information.",
+  alternates: { canonical: "/privacy" },
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {

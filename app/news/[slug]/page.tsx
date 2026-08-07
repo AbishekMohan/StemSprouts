@@ -20,7 +20,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = await getPost(slug)
   if (!post) return { title: "News - STEM Sprouts" }
-  return { title: `${post.title} - STEM Sprouts`, description: post.excerpt }
+
+  const title = `${post.title} - STEM Sprouts`
+  const canonical = `/news/${slug}`
+  return {
+    title,
+    description: post.excerpt,
+    alternates: { canonical },
+    openGraph: {
+      type: "article",
+      title,
+      description: post.excerpt,
+      url: canonical,
+      images: post.image_url ? [{ url: post.image_url }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: post.excerpt,
+      images: post.image_url ? [post.image_url] : undefined,
+    },
+  }
 }
 
 export default async function NewsPostPage({ params }: Props) {

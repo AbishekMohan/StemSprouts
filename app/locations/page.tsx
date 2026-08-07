@@ -11,6 +11,7 @@ import type { MapChapter } from "@/components/world-map"
 export const metadata: Metadata = {
   title: "Locations - STEM Sprouts",
   description: "STEM Sprouts chapters around the world: from Georgia to Kenya to India, and growing.",
+  alternates: { canonical: "/locations" },
 }
 
 const chapters: (MapChapter & { flag: string; badge?: string })[] = [

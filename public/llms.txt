@@ -1,0 +1,21 @@
+# STEM Sprouts
+
+> STEM Sprouts is a youth-led nonprofit building a global network of student-run STEM chapters, powered by Pinboard, our free open-source hardware coding platform. Chapters run hands-on STEM programming for K-5 students from Georgia to Kenya to India.
+
+STEM Sprouts pairs a free block-coding platform (Pinboard) for Arduino and Raspberry Pi with a student-led chapter model, so any student, anywhere in the world, can bring hands-on STEM to their own community.
+
+## Key pages
+
+- [Home](https://stem-sprouts.org/): Overview of STEM Sprouts' mission, chapters, and impact.
+- [About](https://stem-sprouts.org/about): Who STEM Sprouts is and what the organization believes.
+- [Locations](https://stem-sprouts.org/locations): Current chapter locations around the world.
+- [Pinboard](https://stem-sprouts.org/pinboard): The free, open-source block-coding platform for Arduino and Raspberry Pi.
+- [Policy Fellowship](https://stem-sprouts.org/policy-fellowship): Student research fellowship on STEM education and technology policy.
+- [Partner](https://stem-sprouts.org/partner): How schools, companies, and organizations can partner with STEM Sprouts.
+- [Resources](https://stem-sprouts.org/resources): Free tools and platforms for continuing STEM learning at home.
+- [News](https://stem-sprouts.org/news): Updates, announcements, and research from STEM Sprouts.
+
+## Legal
+
+- [Legal & Tax-Exempt Status](https://stem-sprouts.org/legal): Fiscal sponsorship and tax-exempt status through The Hack Foundation.
+- [Privacy Policy](https://stem-sprouts.org/privacy): How STEM Sprouts collects, uses, and protects information.

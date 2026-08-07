@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "News - STEM Sprouts",
   description: "Updates, announcements, and research from STEM Sprouts.",
   alternates: {
+    canonical: "/news",
     types: { "application/rss+xml": "/news/feed.xml" },
   },
 }
