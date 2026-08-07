@@ -10,6 +10,8 @@ const sponsors = [
   { src: "/partnerlogos/minoritiesinstem.png", alt: "Minorities in STEM" },
   { src: "/partnerlogos/gatech-ceismc.jpeg", alt: "Georgia Tech CEISMC" },
   { src: "/partnerlogos/mgcy.jpeg", alt: "Major Group for Children and Youth" },
+  { src: "/partnerlogos/coderepo.jpeg", alt: "CodeRepo" },
+  { src: "/partnerlogos/curieux-academic-journal.jpeg", alt: "Curieux Academic Journal" },
 ]
 
 export function LogoMarquee() {
