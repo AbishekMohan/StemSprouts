@@ -30,7 +30,7 @@ export function PressSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Read STEM Sprouts coverage on ${mention.name}`}
-                  className="block grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all"
+                  className="block hover:scale-105 transition-transform"
                 >
                   <img src={mention.logo} alt={mention.name} className="h-10 md:h-12 w-auto object-contain" />
                 </a>
