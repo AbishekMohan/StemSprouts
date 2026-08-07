@@ -25,6 +25,7 @@ import { PopIn } from "@/components/pop-in"
 export const metadata: Metadata = {
   title: "Resources - STEM Sprouts",
   description: "Explore platforms and tools to continue your STEM journey at home.",
+  alternates: { canonical: "/resources" },
 }
 
 const learningPlatforms: { tag: string; icon: LucideIcon; title: string; description: string; href: string }[] = [

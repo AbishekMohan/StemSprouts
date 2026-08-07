@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer"
 export const metadata: Metadata = {
   title: "Legal & Tax-Exempt Status - STEM Sprouts",
   description: "STEM Sprouts' fiscal sponsorship and tax-exempt status through The Hack Foundation.",
+  alternates: { canonical: "/legal" },
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {

@@ -9,6 +9,7 @@ import { PopIn } from "@/components/pop-in"
 export const metadata: Metadata = {
   title: "Pinboard - STEM Sprouts",
   description: "A free, open-source block-coding platform for Arduino and Raspberry Pi. Build real hardware projects, simulate them live in your browser, and learn through guided lessons.",
+  alternates: { canonical: "/pinboard" },
 }
 
 const features = [

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Policy Fellowship - STEM Sprouts",
   description:
     "The STEM Sprouts Policy Fellowship pairs students with mentors to research, write, and publish policy papers that reach real decision-makers.",
+  alternates: { canonical: "/policy-fellowship" },
 }
 
 const benefits = [

@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
 import { LogoMarquee } from "@/components/logo-marquee"
@@ -12,6 +13,13 @@ import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 
 export const revalidate = 60
+
+export const metadata: Metadata = {
+  title: "STEM Sprouts",
+  description:
+    "STEM Sprouts is a youth-led nonprofit building a global network of student-run STEM chapters, from Georgia to Kenya to India, powered by Pinboard, our free open-source hardware coding platform.",
+  alternates: { canonical: "/" },
+}
 
 export default function Home() {
   return (

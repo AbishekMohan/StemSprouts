@@ -8,6 +8,7 @@ import { PopIn } from "@/components/pop-in"
 export const metadata: Metadata = {
   title: "About - STEM Sprouts",
   description: "A youth-led nonprofit building a global network of student-run STEM chapters and Pinboard, our open-source learning platform.",
+  alternates: { canonical: "/about" },
 }
 
 const team = [

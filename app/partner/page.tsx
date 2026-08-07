@@ -10,6 +10,7 @@ import { PopIn } from "@/components/pop-in"
 export const metadata: Metadata = {
   title: "Partner - STEM Sprouts",
   description: "Partner with STEM Sprouts to make STEM education free and accessible to every child.",
+  alternates: { canonical: "/partner" },
 }
 
 const benefits = [
