@@ -18,7 +18,7 @@ export function LogoMarquee() {
   return (
     <div id="partners">
       <p className="text-center text-xs md:text-sm font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
-        Trusted by organizations supporting our growth
+        Trusted by organizations and businesses supporting our growth
       </p>
       <div className="relative overflow-hidden bg-white dark:bg-black border-y-4 border-black dark:border-white py-16 mt-6 mb-16 w-full">
         <LogoLoop
