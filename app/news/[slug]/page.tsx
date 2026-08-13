@@ -2,10 +2,13 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { ArticleShareRow } from "@/components/article-share-row"
 import { supabasePublic } from "@/lib/supabase-public"
 import { formatCategory } from "@/lib/format-category"
 import { POST_CONTENT_CLASSES } from "@/lib/post-content-classes"
 import { toDisplayHtml } from "@/lib/render-post-content"
+import { estimateReadingTime } from "@/lib/reading-time"
+import { SITE_URL } from "@/lib/site"
 
 export const revalidate = 60
 
@@ -48,6 +51,9 @@ export default async function NewsPostPage({ params }: Props) {
   const post = await getPost(slug)
   if (!post) notFound()
 
+  const readingTime = estimateReadingTime(post.content)
+  const articleUrl = `${SITE_URL}/news/${slug}`
+
   return (
     <main id="main-content" className="min-h-screen bg-white dark:bg-black">
       <Navigation />
@@ -66,9 +72,13 @@ export default async function NewsPostPage({ params }: Props) {
                 day: "numeric",
               })}
             </span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">&middot; {readingTime} min read</span>
           </div>
           <h1 className="text-3xl md:text-5xl font-bold text-black dark:text-white mb-4 leading-tight">{post.title}</h1>
-          <p className="text-gray-500 dark:text-gray-400 mb-6">By {post.author}</p>
+          <div className="flex items-center justify-between flex-wrap gap-4 mb-6">
+            <p className="text-gray-500 dark:text-gray-400">By {post.author}</p>
+            <ArticleShareRow url={articleUrl} title={post.title} />
+          </div>
           {post.image_url && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
