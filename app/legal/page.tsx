@@ -55,6 +55,20 @@ export default function LegalTaxExemptStatusPage() {
             </ul>
           </Section>
 
+          <Section title="Registration in Kenya">
+            <p>
+              STEM Sprouts Kenya is registered as a Community Based Organization (CBO) with the Kenyan Directorate
+              of Social Development under the Community Groups Registration Act, No. 30 of 2022 (Registration No.
+              CC/SST/CBO/HC 1450, Siaya County).
+            </p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/legal/kenya-cbo-registration-certificate.jpeg"
+              alt="STEM Sprouts Kenya Certificate of Registration as a Community Based Organization, issued by the Republic of Kenya"
+              className="w-full rounded-2xl border-[3px] border-black dark:border-white mt-2"
+            />
+          </Section>
+
           <Section title="Our Fiscal Sponsor">
             <p className="font-bold text-black dark:text-white">The Hack Foundation (d.b.a. Hack Club)</p>
             <p>501(c)(3) public charity &middot; EIN 81-2908499</p>
