@@ -25,7 +25,7 @@ const chapters: (MapChapter & { flag: string; badge?: string })[] = [
   { name: "West Bengal", region: "India", flag: "🇮🇳", coordinates: [88.3639, 22.5726] },
   { name: "Odisha", region: "India", flag: "🇮🇳", coordinates: [85.8245, 20.2961] },
   { name: "Gopalganj", region: "Bangladesh", flag: "🇧🇩", coordinates: [89.8266, 23.005] },
-  { name: "Siaya", region: "Kenya", flag: "🇰🇪", coordinates: [34.2881, 0.0607] },
+  { name: "Siaya STEAM Hub", region: "Kenya", flag: "🇰🇪", coordinates: [34.2881, 0.0607] },
   { name: "Dubai", region: "UAE", flag: "🇦🇪", coordinates: [55.2708, 25.2048] },
 ]
 
