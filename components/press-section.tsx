@@ -11,6 +11,17 @@ const pressMentions = [
     logo: "/presslogos/innovation-world.png",
     href: "https://innovationworld.org/innovation-insider/",
   },
+  {
+    name: "VoyageATL",
+    logo: "/presslogos/voyage-atl.png",
+    href: "https://voyageatl.com/interview/inspiring-conversations-with-harshit-chaturvedy-of-stem-sprouts/",
+    invertOnDark: true,
+  },
+  {
+    name: "Lian's Corner",
+    logo: "/presslogos/lian-corner.jpeg",
+    href: "https://www.instagram.com/lian_corner/",
+  },
 ]
 
 export function PressSection() {
@@ -29,10 +40,14 @@ export function PressSection() {
                   href={mention.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Read STEM Sprouts coverage on ${mention.name}`}
+                  aria-label={`STEM Sprouts feature on ${mention.name}`}
                   className="block hover:scale-105 transition-transform"
                 >
-                  <img src={mention.logo} alt={mention.name} className="h-10 md:h-12 w-auto object-contain" />
+                  <img
+                    src={mention.logo}
+                    alt={mention.name}
+                    className={`h-10 md:h-12 w-auto object-contain ${mention.invertOnDark ? "dark:invert" : ""}`}
+                  />
                 </a>
               </li>
             ))}
