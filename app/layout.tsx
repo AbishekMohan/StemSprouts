@@ -48,11 +48,29 @@ export const metadata: Metadata = {
 
 const ORGANIZATION_JSON_LD = {
   "@context": "https://schema.org",
-  "@type": "NGO",
+  "@type": ["Organization", "NGO"],
   name: "STEM Sprouts",
   url: SITE_URL,
   logo: `${SITE_URL}/stem/logo.png`,
   description: SITE_DESCRIPTION,
+  email: "hello@stem-sprouts.org",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "8605 Santa Monica Boulevard #86294",
+    addressLocality: "West Hollywood",
+    addressRegion: "CA",
+    postalCode: "90069",
+    addressCountry: "US",
+  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      email: "hello@stem-sprouts.org",
+      contactType: "customer support",
+      areaServed: "Worldwide",
+      availableLanguage: ["English"],
+    },
+  ],
   sameAs: [
     "https://www.instagram.com/stemsprouts_/",
     "https://www.linkedin.com/company/stemsprouts/",

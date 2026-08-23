@@ -17,7 +17,7 @@ export default function NotFound() {
           The page you're looking for doesn't exist or may have moved. Check the URL, or head back to something
           useful below.
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
           <Link
             href="/"
             className="bg-[#22C55E] text-black hover:bg-[#1ea750] rounded-lg px-6 py-3 font-bold text-sm"
@@ -31,6 +31,17 @@ export default function NotFound() {
             Read the News
           </Link>
         </div>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          Looking for something specific? Try the{" "}
+          <Link href="/sitemap.xml" className="underline hover:text-black dark:hover:text-white">
+            sitemap
+          </Link>{" "}
+          or{" "}
+          <Link href="/llms.txt" className="underline hover:text-black dark:hover:text-white">
+            llms.txt
+          </Link>
+          .
+        </p>
       </section>
       <Footer />
     </main>
