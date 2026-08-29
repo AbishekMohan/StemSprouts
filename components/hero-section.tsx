@@ -14,6 +14,7 @@ function PhotoSlide({
   children,
   priority,
   imagePosition = "object-center",
+  isFirst = false,
 }: {
   image: string
   alt: string
@@ -23,7 +24,13 @@ function PhotoSlide({
   children: ReactNode
   priority?: boolean
   imagePosition?: string
+  isFirst?: boolean
 }) {
+  // Only the first slide renders as an <h1> - a page should have exactly one.
+  // The rest use a <p> styled identically, since they're carousel content, not
+  // distinct document sections.
+  const Heading = isFirst ? "h1" : "p"
+
   return (
     <div className="relative w-full h-[400px] sm:h-[420px] md:h-[460px] overflow-hidden">
       <Image src={image} alt={alt} fill priority={priority} className={`object-cover ${imagePosition}`} />
@@ -31,9 +38,9 @@ function PhotoSlide({
       <div className="absolute inset-0 flex items-center">
         <div className="container mx-auto px-12 sm:px-14 md:px-16">
           <div className="max-w-2xl">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-2 sm:mb-4">
+            <Heading className="text-2xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-2 sm:mb-4">
               {headline} <span className="bg-[#22C55E] text-black px-2 sm:px-3 py-0.5 sm:py-1 inline-block">{highlight}</span>
-            </h1>
+            </Heading>
             <p className="text-gray-200 text-sm sm:text-base md:text-lg font-medium mb-3 sm:mb-6 max-w-xl line-clamp-2 sm:line-clamp-none">
               {subtext}
             </p>
@@ -57,6 +64,7 @@ const slides: CarouselSlide[] = [
         highlight="going global"
         subtext="A growing international network of youth-led chapters, backed by Pinboard, our open-source platform for hands-on STEM."
         priority
+        isFirst
       >
         <a href="https://chapters.stem-sprouts.org" target="_blank" rel="noopener noreferrer">
           <Button className="bg-[#22C55E] text-black hover:bg-[#1ea750] rounded-lg py-3 px-4 sm:py-5 sm:px-6 md:py-6 md:px-8 text-xs sm:text-sm md:text-base font-bold h-auto border-2 border-black">
