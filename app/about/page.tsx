@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 const team = [
   {
     initials: "HC",
+    photo: "/team/harshit-chaturvedy.jpeg",
     name: "Harshit Chaturvedy",
     role: "Founder & Executive",
     bio: "Founder of STEM Sprouts, leading the organization's vision and maintaining community connections.",
@@ -38,15 +39,53 @@ const team = [
   },
   {
     initials: "HR",
+    photo: "/team/hridhun-regupathi.jpeg",
     name: "Hridhun Regupathi",
     role: "Head Grant Writer",
     bio: "Secures critical funding and grants to keep our workshops completely free and accessible for more communities globally.",
   },
   {
     initials: "TS",
+    photo: "/team/tanishi-srivastava.jpeg",
     name: "Tanishi Srivastava",
     role: "Head of Social Media Strategy",
     bio: "Amplifying our message globally to ensure our mission reaches the people who need it most.",
+  },
+]
+
+const ambassadorLeads = [
+  {
+    photo: "/team/harshit-chaturvedy.jpeg",
+    name: "Harshit Chaturvedy",
+    role: "Founder & Executive",
+    note: "Founder of STEM Sprouts, leading the organization's vision and maintaining community connections.",
+  },
+  {
+    photo: "/team/tanishi-srivastava.jpeg",
+    name: "Tanishi Srivastava",
+    role: "Head of Marketing",
+    note: "Fun fact: my favorite movie is 27 Dresses.",
+  },
+]
+
+const ambassadors = [
+  {
+    photo: "/team/nikhil-kolisetty.jpeg",
+    name: "Nikhil Kolisetty",
+    role: "Social Media Ambassador",
+    note: "Fun fact: I like to play FC26 in my free time.",
+  },
+  {
+    photo: "/team/raaga-maddala.jpeg",
+    name: "Raaga Maddala",
+    role: "Social Media Ambassador",
+    note: "Fun fact: my favorite artist is SZA.",
+  },
+  {
+    photo: "/team/aanya-bhardwaj.jpeg",
+    name: "Aanya Bhardwaj",
+    role: "Social Media Ambassador",
+    note: "Fun fact: my favorite artist is Ariana Grande.",
   },
 ]
 
@@ -54,10 +93,6 @@ const openRoles = [
   {
     title: "Pinboard Developer",
     description: "Work on our open-source virtual circuit builder and help shape the future of our learning platform.",
-  },
-  {
-    title: "Social Media Ambassador",
-    description: "Help create reels/videos for our social media channels to promote STEM education",
   },
 ]
 
@@ -116,12 +151,76 @@ export default function AboutPage() {
                   delay={(index % 3) * 120}
                   className="bg-white dark:bg-black border-4 border-black dark:border-white rounded-3xl p-6 text-center hover:shadow-[6px_6px_0px_0px_rgba(34,197,94,1)] transition-all flex flex-col items-center"
                 >
-                  <div className="w-20 h-20 mb-4 rounded-full bg-[#22C55E] border-2 border-black dark:border-white flex items-center justify-center font-bold text-xl text-black">
-                    {member.initials}
-                  </div>
+                  {member.photo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={member.photo}
+                      alt={member.name}
+                      className="w-20 h-20 mb-4 rounded-full object-cover border-2 border-black dark:border-white"
+                    />
+                  ) : (
+                    <div className="w-20 h-20 mb-4 rounded-full bg-[#22C55E] border-2 border-black dark:border-white flex items-center justify-center font-bold text-xl text-black">
+                      {member.initials}
+                    </div>
+                  )}
                   <h3 className="font-bold text-lg text-black dark:text-white">{member.name}</h3>
                   <div className="text-[#15803d] dark:text-[#22C55E] text-xs font-bold uppercase tracking-wide mb-3">{member.role}</div>
                   <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mt-auto">{member.bio}</p>
+                </PopIn>
+              ))}
+            </div>
+          </div>
+
+          {/* Social Media Ambassador Team Section */}
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-black dark:text-white">
+              Social Media <span className="bg-[#22C55E] text-black px-3 py-1 inline-block">Ambassador Team</span>
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300 text-center max-w-2xl mx-auto mb-12">
+              Students creating reels and content across our channels to bring STEM Sprouts&apos; mission to more
+              people, led by our Founder and Head of Marketing.
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-6 mb-6 max-w-2xl mx-auto">
+              {ambassadorLeads.map((person, index) => (
+                <PopIn
+                  key={person.name}
+                  delay={index * 120}
+                  className="bg-white dark:bg-black border-4 border-black dark:border-white rounded-3xl p-6 text-center hover:shadow-[6px_6px_0px_0px_rgba(34,197,94,1)] transition-all flex flex-col items-center"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={person.photo}
+                    alt={person.name}
+                    className="w-20 h-20 mb-4 rounded-full object-cover border-2 border-black dark:border-white"
+                  />
+                  <h3 className="font-bold text-lg text-black dark:text-white">{person.name}</h3>
+                  <div className="text-[#15803d] dark:text-[#22C55E] text-xs font-bold uppercase tracking-wide mb-3">
+                    {person.role}
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mt-auto">{person.note}</p>
+                </PopIn>
+              ))}
+            </div>
+
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {ambassadors.map((person, index) => (
+                <PopIn
+                  key={person.name}
+                  delay={(index % 3) * 120}
+                  className="bg-white dark:bg-black border-4 border-black dark:border-white rounded-3xl p-6 text-center hover:shadow-[6px_6px_0px_0px_rgba(34,197,94,1)] transition-all flex flex-col items-center"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={person.photo}
+                    alt={person.name}
+                    className="w-20 h-20 mb-4 rounded-full object-cover border-2 border-black dark:border-white"
+                  />
+                  <h3 className="font-bold text-lg text-black dark:text-white">{person.name}</h3>
+                  <div className="text-[#15803d] dark:text-[#22C55E] text-xs font-bold uppercase tracking-wide mb-3">
+                    {person.role}
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mt-auto">{person.note}</p>
                 </PopIn>
               ))}
             </div>
