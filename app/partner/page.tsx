@@ -109,6 +109,29 @@ export default function PartnerPage() {
           </PopIn>
 
           <PopIn className="text-center bg-white dark:bg-black border-4 border-black dark:border-white rounded-3xl p-8 md:p-12 mb-20">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-black dark:text-white">Donate</h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-xl mx-auto">
+              Make a one-time or recurring donation directly through our fiscal sponsor, Hack Club Bank. Contributions
+              are tax-deductible to the extent allowed by law.
+            </p>
+            <div className="max-w-[512px] mx-auto overflow-hidden rounded-2xl border-[3px] border-black dark:border-white">
+              <iframe
+                src="https://hcb.hackclub.com/donations/start/stem-sprouts"
+                style={{ border: "none", display: "block", width: "100%" }}
+                name="donateFrame"
+                title="Donate to STEM Sprouts"
+                scrolling="yes"
+                frameBorder="0"
+                marginHeight={0}
+                marginWidth={0}
+                height="512px"
+                width="512px"
+                allowFullScreen
+              />
+            </div>
+          </PopIn>
+
+          <PopIn className="text-center bg-white dark:bg-black border-4 border-black dark:border-white rounded-3xl p-8 md:p-12 mb-20">
             <h3 className="text-2xl md:text-3xl font-bold mb-4 text-black dark:text-white">Partnership Guide</h3>
             <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-xl mx-auto">
               Download our comprehensive guide to learn more about our mission, impact, and specific sponsorship
