@@ -44,22 +44,9 @@ const team = [
     role: "Head Grant Writer",
     bio: "Secures critical funding and grants to keep our workshops completely free and accessible for more communities globally.",
   },
-  {
-    initials: "TS",
-    photo: "/team/tanishi-srivastava.jpeg",
-    name: "Tanishi Srivastava",
-    role: "Head of Social Media Strategy",
-    bio: "Amplifying our message globally to ensure our mission reaches the people who need it most.",
-  },
 ]
 
 const ambassadorLeads = [
-  {
-    photo: "/team/harshit-chaturvedy.jpeg",
-    name: "Harshit Chaturvedy",
-    role: "Founder & Executive",
-    note: "Founder of STEM Sprouts, leading the organization's vision and maintaining community connections.",
-  },
   {
     photo: "/team/tanishi-srivastava.jpeg",
     name: "Tanishi Srivastava",
@@ -181,7 +168,7 @@ export default function AboutPage() {
               people, led by our Founder and Head of Marketing.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-6 mb-6 max-w-2xl mx-auto">
+            <div className="grid gap-6 mb-6 max-w-sm mx-auto">
               {ambassadorLeads.map((person, index) => (
                 <PopIn
                   key={person.name}
