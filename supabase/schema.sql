@@ -55,6 +55,20 @@ alter table admin_users enable row level security;
 -- No policies: this table is only ever touched via the service_role key
 -- from server-side API routes (never exposed to the anon/public client).
 
+create table if not exists login_attempts (
+  id uuid primary key default gen_random_uuid(),
+  ip text not null,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists login_attempts_ip_created_at_idx on login_attempts (ip, created_at desc);
+
+alter table login_attempts enable row level security;
+
+-- No policies: only ever touched via the service_role key from
+-- app/api/auth/login and app/api/auth/accept-invite, to rate-limit
+-- brute-force attempts. Never exposed to the anon/public client.
+
 create table if not exists admin_invites (
   id uuid primary key default gen_random_uuid(),
   token text unique not null,
@@ -78,6 +92,18 @@ alter table admin_invites enable row level security;
 -- written to be safe to run more than once -- each ALTER only fires the
 -- first time, and the one-time backfills only run inside that same check.
 -- ============================================================
+
+-- Safe to run against an already-deployed database too: IF NOT EXISTS
+-- makes this a no-op if login_attempts was already created above.
+create table if not exists login_attempts (
+  id uuid primary key default gen_random_uuid(),
+  ip text not null,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists login_attempts_ip_created_at_idx on login_attempts (ip, created_at desc);
+
+alter table login_attempts enable row level security;
 
 do $$
 begin
