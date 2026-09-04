@@ -51,7 +51,7 @@ const ambassadorLeads = [
     photo: "/team/tanishi-srivastava.jpeg",
     name: "Tanishi Srivastava",
     role: "Head of Marketing",
-    note: "Fun fact: my favorite movie is 27 Dresses.",
+    note: "Fun fact: My favorite movie is 27 Dresses.",
   },
 ]
 
@@ -66,13 +66,19 @@ const ambassadors = [
     photo: "/team/raaga-maddala.jpeg",
     name: "Raaga Maddala",
     role: "Social Media Ambassador",
-    note: "Fun fact: my favorite artist is SZA.",
+    note: "Fun fact: My favorite artist is SZA.",
   },
   {
     photo: "/team/aanya-bhardwaj.jpeg",
     name: "Aanya Bhardwaj",
     role: "Social Media Ambassador",
-    note: "Fun fact: my favorite artist is Ariana Grande.",
+    note: "Fun fact: My favorite artist is Ariana Grande.",
+  },
+  {
+    photo: "/team/nikhil-kumar.jpeg",
+    name: "Nikhil Kumar",
+    role: "Social Media Ambassador",
+    note: "Fun fact: My favorite color is Navy Blue.",
   },
 ]
 
@@ -190,11 +196,11 @@ export default function AboutPage() {
               ))}
             </div>
 
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
               {ambassadors.map((person, index) => (
                 <PopIn
                   key={person.name}
-                  delay={(index % 3) * 120}
+                  delay={(index % 2) * 120}
                   className="bg-white dark:bg-black border-4 border-black dark:border-white rounded-3xl p-6 text-center hover:shadow-[6px_6px_0px_0px_rgba(34,197,94,1)] transition-all flex flex-col items-center"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
