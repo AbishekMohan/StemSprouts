@@ -28,12 +28,14 @@ const team = [
   },
   {
     initials: "SP",
+    photo: "/team/saisohan-panda.png",
     name: "Saisohan Panda",
     role: "Vice-President of Policy",
     bio: "Oversees organizational policies, compliance, and strategic outreach to expand program impact.",
   },
   {
     initials: "AM",
+    photo: "/team/abishek-mohan.png",
     name: "Abishek Mohan",
     role: "Website Developer",
     bio: "Builds and refines website features to help present STEM Sprouts' programs clearly and effectively.",
