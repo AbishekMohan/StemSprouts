@@ -2,15 +2,17 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import { Check, Github, Rocket } from "lucide-react"
 import { Navigation } from "@/components/navigation"
+import { pageMetadata } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Footer } from "@/components/footer"
 import { PopIn } from "@/components/pop-in"
 
-export const metadata: Metadata = {
-  title: "Pinboard - STEM Sprouts",
-  description: "A free, open-source block-coding platform for Arduino and Raspberry Pi. Build real hardware projects, simulate them live in your browser, and learn through guided lessons.",
-  alternates: { canonical: "/pinboard" },
-}
+export const metadata: Metadata = pageMetadata({
+  title: "Pinboard | Free Open-Source Arduino & Raspberry Pi Coding Platform",
+  description:
+    "Pinboard is a free, open-source block-coding platform built by STEM Sprouts students. Simulate Arduino and Raspberry Pi circuits in your browser and learn through guided lessons.",
+  path: "/pinboard",
+})
 
 const features = [
   {

@@ -1,17 +1,18 @@
 import type { Metadata } from "next"
 import { Check, FileText, Users, Megaphone, Landmark, Award, HandHeart } from "lucide-react"
 import { Navigation } from "@/components/navigation"
+import { pageMetadata } from "@/lib/seo"
 import { PageHeader } from "@/components/page-header"
 import { Footer } from "@/components/footer"
 import { PopIn } from "@/components/pop-in"
 import { PolicyFellowshipForm } from "@/components/policy-fellowship-form"
 
-export const metadata: Metadata = {
-  title: "Policy Fellowship - STEM Sprouts",
+export const metadata: Metadata = pageMetadata({
+  title: "STEM Education Policy Fellowship for Students | STEM Sprouts",
   description:
-    "The STEM Sprouts Policy Fellowship pairs students with mentors to research, write, and publish policy papers that reach real decision-makers.",
-  alternates: { canonical: "/policy-fellowship" },
-}
+    "The STEM Sprouts Policy Fellowship pairs students with mentors to research, write, and publish policy papers on STEM education that reach real decision-makers.",
+  path: "/policy-fellowship",
+})
 
 const benefits = [
   {

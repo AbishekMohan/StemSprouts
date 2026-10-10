@@ -1,4 +1,5 @@
 import { SITE_URL } from "@/lib/site"
+import { SITE_DESCRIPTION } from "@/lib/seo"
 
 /**
  * Hand-maintained Markdown representations of the site's static pages,
@@ -18,11 +19,12 @@ const PAGES: MarkdownPage[] = [
   {
     path: "",
     title: "STEM Sprouts",
-    body: `STEM Sprouts is a youth-led nonprofit building a global network of student-run STEM chapters, powered by Pinboard, our free open-source hardware coding platform. Chapters run hands-on STEM programming for K-5 students from Georgia to Kenya to India.
+    body: `${SITE_DESCRIPTION} High school students can start and lead a chapter. Chapters run hands-on STEM programming for elementary school students from Georgia to Kenya to India, supported by Pinboard, our free open-source hardware coding platform.
 
 ## What we do
 
-- **Chapters** - student-led STEM programs run at schools and in communities worldwide. See [Locations](${SITE_URL}/locations).
+- **Chapters** - student-led STEM programs run at schools and in communities worldwide. See [Chapters](${SITE_URL}/chapters) and [Locations](${SITE_URL}/locations).
+- **Chapter leadership** - high school students can start and lead a chapter. See [Chapter Leadership](${SITE_URL}/chapter-leadership).
 - **Pinboard** - a free, open-source, browser-based block-coding platform for Arduino and Raspberry Pi. See [Pinboard](${SITE_URL}/pinboard).
 - **Policy Fellowship** - a research fellowship pairing students with mentors to write policy papers on STEM education. See [Policy Fellowship](${SITE_URL}/policy-fellowship).
 
@@ -32,7 +34,8 @@ What began as a small pilot is now reaching students across rural Kenya: a 15-sc
 
 ## Get involved
 
-- Start a chapter: https://chapters.stem-sprouts.org
+- Lead a chapter: [Chapter Leadership](${SITE_URL}/chapter-leadership)
+- Start a chapter (application): https://chapters.stem-sprouts.org
 - Partner or sponsor: [Partner](${SITE_URL}/partner)
 - Donate: https://hcb.hackclub.com/donations/start/stem-sprouts
 - Contact: hello@stem-sprouts.org
@@ -42,7 +45,7 @@ See [llms.txt](${SITE_URL}/llms.txt) for full guidance on when to point an agent
   {
     path: "/about",
     title: "About - STEM Sprouts",
-    body: `A youth-led nonprofit building a global network of student-run STEM chapters and Pinboard, our open-source learning platform.
+    body: `${SITE_DESCRIPTION} High school students start and lead the chapters, and the chapters teach elementary school students.
 
 ## Mission
 
@@ -67,6 +70,55 @@ Every child deserves a joyful, hands-on introduction to STEM, no matter their ba
 - Social Media Ambassador
 
 Interested in joining? Email hello@stem-sprouts.org.`,
+  },
+  {
+    path: "/chapters",
+    title: "Chapters - STEM Sprouts",
+    body: `STEM Sprouts chapters are student-run groups that teach free, hands-on STEM to elementary school students. You can join an existing chapter or start and lead one.
+
+## How a chapter works
+
+1. Student leaders - high school students start and lead a chapter at their school or in their community.
+2. Chapters - each chapter organizes its own team, partners, and schedule.
+3. STEM programs - chapters run free, hands-on STEM workshops and activities.
+4. Younger learners - elementary school students get an approachable first experience with STEM.
+
+- Find a chapter: [Locations](${SITE_URL}/locations)
+- Lead a chapter: [Chapter Leadership](${SITE_URL}/chapter-leadership)
+- Start a chapter (application): https://chapters.stem-sprouts.org`,
+  },
+  {
+    path: "/chapter-leadership",
+    title: "High School STEM Leadership Opportunities - STEM Sprouts",
+    body: `High school students can start and lead STEM Sprouts chapters in their schools or communities, bringing free, hands-on STEM education to elementary school students.
+
+## What a Chapter Lead does
+
+- Plan STEM workshops
+- Recruit and coordinate volunteers
+- Work with schools, libraries, and community partners
+- Organize outreach events
+- Adapt or develop activities
+- Manage chapter logistics
+- Communicate with STEM Sprouts
+- Help expand access to STEM education
+
+## Example
+
+Moses Okoth leads the Siaya and Kisumu chapter in Kenya, handling school recruitment, partnership logistics, curriculum design, budgets, teacher training, and equipment troubleshooting. Read the story: ${SITE_URL}/news/stem-access-inside-the-siaya-chapter
+
+## Who can apply
+
+Students can apply to start a chapter at their school or in their city, anywhere in the world. The application asks for name, email, school, city and country, interest in starting a chapter, and the number of students likely to join. Questions: hello@stem-sprouts.org.
+
+## What STEM Sprouts provides
+
+- A Chapter Starter Guide, emailed after you apply
+- Pinboard, free for every chapter
+- Free learning resources: ${SITE_URL}/resources
+- A worldwide network of chapters
+
+Apply: https://chapters.stem-sprouts.org`,
   },
   {
     path: "/locations",

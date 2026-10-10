@@ -8,7 +8,9 @@ import { formatCategory } from "@/lib/format-category"
 import { POST_CONTENT_CLASSES } from "@/lib/post-content-classes"
 import { toDisplayHtml } from "@/lib/render-post-content"
 import { estimateReadingTime } from "@/lib/reading-time"
-import { absoluteUrl, DEFAULT_OG_IMAGE, jsonLdScript } from "@/lib/seo"
+import Link from "next/link"
+import { absoluteUrl, breadcrumbJsonLd, DEFAULT_OG_IMAGE, jsonLdScript } from "@/lib/seo"
+import { SITE_URL } from "@/lib/site"
 
 export const revalidate = 60
 
@@ -68,11 +70,17 @@ export default async function NewsPostPage({ params }: Props) {
     dateModified: post.updated_at ?? post.published_at,
     articleSection: post.category,
     author: { "@type": "Person", name: post.author ?? "STEM Sprouts" },
-    publisher: { "@type": "Organization", name: "STEM Sprouts", url: absoluteUrl("/") },
+    publisher: { "@id": `${SITE_URL}/#organization` },
     image: [absoluteUrl(post.image_url ?? DEFAULT_OG_IMAGE.url)],
     wordCount: post.content ? post.content.replace(/<[^>]+>/g, " ").trim().split(/\s+/).filter(Boolean).length : undefined,
     mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
   }
+
+  const breadcrumbs = breadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "News", path: "/news" },
+    { name: post.title, path: `/news/${slug}` },
+  ])
 
   return (
     <main id="main-content" className="min-h-screen bg-white dark:bg-black">
@@ -80,19 +88,20 @@ export default async function NewsPostPage({ params }: Props) {
       <section className="container mx-auto px-4 py-16 md:py-24">
         <article className="max-w-3xl mx-auto">
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(articleJsonLd) }} />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbs) }} />
           <div className="flex items-center gap-3 mb-4 flex-wrap">
             {post.category !== "news" && (
               <span className="inline-block bg-[#22C55E] text-black text-xs font-bold px-3 py-1 rounded-full">
                 {formatCategory(post.category)}
               </span>
             )}
-            <span className="text-sm text-gray-500 dark:text-gray-400">
+            <time dateTime={post.published_at} className="text-sm text-gray-500 dark:text-gray-400">
               {new Date(post.published_at).toLocaleDateString(undefined, {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
               })}
-            </span>
+            </time>
             <span className="text-sm text-gray-500 dark:text-gray-400">&middot; {readingTime} min read</span>
           </div>
           <h1 className="text-3xl md:text-5xl font-bold text-black dark:text-white mb-4 leading-tight">{post.title}</h1>
@@ -112,6 +121,30 @@ export default async function NewsPostPage({ params }: Props) {
             className={`text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg ${POST_CONTENT_CLASSES}`}
             dangerouslySetInnerHTML={{ __html: toDisplayHtml(post.content) }}
           />
+
+          <aside
+            aria-labelledby="article-cta-heading"
+            className="mt-16 bg-[#22C55E] border-4 border-black dark:border-white rounded-3xl p-8 md:p-10"
+          >
+            <h2 id="article-cta-heading" className="text-2xl md:text-3xl font-bold text-black mb-3">
+              Interested in leading a STEM Sprouts chapter?
+            </h2>
+            <p className="text-black/80 mb-6 leading-relaxed">
+              STEM Sprouts is a student-led nonprofit. High school students can start and lead chapters that bring free,
+              hands-on STEM education to elementary school students.
+            </p>
+            <div className="flex flex-wrap gap-x-6 gap-y-3 font-bold text-black">
+              <Link href="/chapter-leadership" className="underline">
+                Explore Chapter Leadership →
+              </Link>
+              <Link href="/locations" className="underline">
+                Find a STEM Sprouts chapter
+              </Link>
+              <Link href="/chapters" className="underline">
+                How STEM Sprouts chapters work
+              </Link>
+            </div>
+          </aside>
         </article>
       </section>
       <Footer />

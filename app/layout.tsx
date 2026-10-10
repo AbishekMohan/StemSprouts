@@ -24,6 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Scroll-reveal sections start hidden until JS runs; keep content visible without it. */}
+        <noscript>
+          <style>{".pop-in{opacity:1}"}</style>
+        </noscript>
+      </head>
       <body className={`${onest.variable} font-sans antialiased overflow-x-hidden`}>
         <script
           type="application/ld+json"

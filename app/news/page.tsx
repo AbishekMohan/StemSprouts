@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Navigation } from "@/components/navigation"
+import { pageMetadata } from "@/lib/seo"
 import { PageHeader } from "@/components/page-header"
 import { Footer } from "@/components/footer"
 import { PopIn } from "@/components/pop-in"
@@ -9,14 +10,13 @@ import { formatCategory } from "@/lib/format-category"
 import { InstagramEmbed } from "@/components/instagram-embed"
 import { NewsletterSignup } from "@/components/newsletter-signup"
 
-export const metadata: Metadata = {
-  title: "News - STEM Sprouts",
-  description: "Updates, announcements, and research from STEM Sprouts.",
-  alternates: {
-    canonical: "/news",
-    types: { "application/rss+xml": "/news/feed.xml" },
-  },
-}
+export const metadata: Metadata = pageMetadata({
+  title: "STEM Sprouts News | STEM Education & Chapter Stories",
+  description:
+    "News from STEM Sprouts: stories from student-led chapters, partnerships, research, and policy work on free, hands-on STEM education.",
+  path: "/news",
+  alternates: { types: { "application/rss+xml": "/news/feed.xml" } },
+})
 
 export const revalidate = 60
 
@@ -54,7 +54,7 @@ export default async function NewsPage() {
       <PageHeader
         title="News &"
         highlight="Updates"
-        description="The latest from STEM Sprouts chapters, partnerships, and research."
+        description="Stories from student-led STEM Sprouts chapters, plus partnerships, research, and policy work."
       />
 
       <section className="container mx-auto px-4 py-16 md:py-24">

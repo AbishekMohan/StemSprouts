@@ -1,13 +1,15 @@
 import type { Metadata } from "next"
 import { Navigation } from "@/components/navigation"
+import { pageMetadata } from "@/lib/seo"
 import { PageHeader } from "@/components/page-header"
 import { Footer } from "@/components/footer"
 
-export const metadata: Metadata = {
-  title: "Legal & Tax-Exempt Status - STEM Sprouts",
-  description: "STEM Sprouts' fiscal sponsorship and tax-exempt status through The Hack Foundation.",
-  alternates: { canonical: "/legal" },
-}
+export const metadata: Metadata = pageMetadata({
+  title: 'Legal & Tax-Exempt Status | STEM Sprouts',
+  description:
+    "STEM Sprouts is a fiscally sponsored project of The Hack Foundation, a 501(c)(3) public charity. Read about our tax-exempt status, fiscal sponsor, and STEM Sprouts Kenya's registration.",
+  path: '/legal',
+})
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (

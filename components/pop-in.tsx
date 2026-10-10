@@ -6,10 +6,12 @@ export function PopIn({
   children,
   delay = 0,
   className = "",
+  id,
 }: {
   children: ReactNode
   delay?: number
   className?: string
+  id?: string
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
@@ -35,6 +37,7 @@ export function PopIn({
   return (
     <div
       ref={ref}
+      id={id}
       className={`pop-in ${visible ? "is-visible" : ""} ${className}`}
       style={visible && delay ? { animationDelay: `${delay}ms` } : undefined}
     >

@@ -20,9 +20,10 @@ export function AboutSection() {
               Who's behind <span className="bg-[#22C55E] text-black px-3 py-1 inline-block">STEM Sprouts?</span>
             </h2>
             <p className="text-gray-600 dark:text-gray-300 text-base md:text-lg leading-relaxed">
-              STEM Sprouts is a youth-led nonprofit building a global network of student-run chapters, powered by
-              Pinboard, our open-source STEM platform. What started as a small group of students is growing into a
-              movement, with chapters and partners joining from communities everywhere.
+              STEM Sprouts is a student-led nonprofit providing free, hands-on STEM education to elementary school
+              students through student-run chapters. What started as a small group of students is growing into a
+              movement, with chapters and partners joining from communities everywhere, supported by Pinboard, our
+              open-source STEM platform.
             </p>
           </div>
 

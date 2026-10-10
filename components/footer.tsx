@@ -3,6 +3,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { TikTokIcon } from "@/components/icons/tiktok-icon"
 import { NewsletterSignup } from "@/components/newsletter-signup"
+import { CHAPTER_APPLICATION_URL, DONATE_URL } from "@/lib/nav"
 
 export function Footer() {
   return (
@@ -18,7 +19,7 @@ export function Footer() {
                 </p>
               </div>
               <a
-                href="https://chapters.stem-sprouts.org"
+                href={CHAPTER_APPLICATION_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#22C55E] text-black hover:bg-[#1ea750] rounded-xl px-8 py-4 font-bold text-base whitespace-nowrap flex items-center gap-2 transition-colors w-full md:w-auto justify-center"
@@ -50,8 +51,8 @@ export function Footer() {
                 <span className="text-lg md:text-xl font-bold">STEM Sprouts</span>
               </div>
               <p className="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed">
-                A youth-led nonprofit building a global network of student-run STEM chapters, powered by Pinboard,
-                our open-source platform.
+                A student-led nonprofit providing free, hands-on STEM education to elementary school students through
+                student-run chapters.
               </p>
               <div className="flex gap-3">
                 <a
@@ -116,13 +117,28 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/partner" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
-                    Partner
+                  <Link href="/chapters" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
+                    Chapters
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/chapter-leadership" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
+                    Chapter Leadership
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/locations" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
+                    Chapter Locations
                   </Link>
                 </li>
                 <li>
                   <Link href="/pinboard" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
                     Pinboard
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/policy-fellowship" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
+                    Policy Fellowship
                   </Link>
                 </li>
                 <li>
@@ -136,8 +152,18 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/locations" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
-                    Locations
+                  <Link href="/partner" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
+                    Partner With Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/legal" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
+                    Legal &amp; Tax Status
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/privacy" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
+                    Privacy Policy
                   </Link>
                 </li>
               </ul>
@@ -147,8 +173,13 @@ export function Footer() {
               <h3 className="font-bold mb-4">Get Involved</h3>
               <ul className="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
                 <li>
+                  <Link href="/chapter-leadership" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
+                    Explore Chapter Leadership
+                  </Link>
+                </li>
+                <li>
                   <a
-                    href="https://chapters.stem-sprouts.org"
+                    href={CHAPTER_APPLICATION_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors"
@@ -178,7 +209,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://hcb.hackclub.com/donations/start/stem-sprouts"
+                    href={DONATE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors"

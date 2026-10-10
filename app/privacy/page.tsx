@@ -1,13 +1,15 @@
 import type { Metadata } from "next"
 import { Navigation } from "@/components/navigation"
+import { pageMetadata } from "@/lib/seo"
 import { PageHeader } from "@/components/page-header"
 import { Footer } from "@/components/footer"
 
-export const metadata: Metadata = {
-  title: "Privacy Policy - STEM Sprouts",
-  description: "How STEM Sprouts collects, uses, and protects your information.",
-  alternates: { canonical: "/privacy" },
-}
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy Policy | STEM Sprouts",
+  description:
+    "How STEM Sprouts collects, uses, and protects your information when you use our website, newsletter, and chapter application.",
+  path: "/privacy",
+})
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (

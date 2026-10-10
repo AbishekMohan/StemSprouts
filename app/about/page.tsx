@@ -4,12 +4,16 @@ import { Navigation } from "@/components/navigation"
 import { PageHeader } from "@/components/page-header"
 import { Footer } from "@/components/footer"
 import { PopIn } from "@/components/pop-in"
+import Link from "next/link"
+import { SITE_DESCRIPTION, breadcrumbJsonLd, jsonLdScript, pageMetadata } from "@/lib/seo"
+import { CHAPTER_APPLICATION_URL } from "@/lib/nav"
 
-export const metadata: Metadata = {
-  title: "About - STEM Sprouts",
-  description: "A youth-led nonprofit building a global network of student-run STEM chapters and Pinboard, our open-source learning platform.",
-  alternates: { canonical: "/about" },
-}
+export const metadata: Metadata = pageMetadata({
+  title: "About STEM Sprouts | Student-Led STEM Nonprofit",
+  description:
+    "STEM Sprouts is a student-led nonprofit where high school students start and lead chapters that bring free, hands-on STEM education to elementary school students. Meet the team and learn our story.",
+  path: "/about",
+})
 
 const team = [
   {
@@ -100,12 +104,60 @@ export default function AboutPage() {
       <PageHeader
         title="About"
         highlight="STEM Sprouts"
-        description="A youth-led nonprofit building a global network of student-run STEM chapters and Pinboard, our open-source learning platform."
+        description={SITE_DESCRIPTION}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(
+            breadcrumbJsonLd([
+              { name: "Home", path: "/" },
+              { name: "About", path: "/about" },
+            ]),
+          ),
+        }}
       />
 
       <section className="container mx-auto px-4 py-16 md:py-24">
         <div className="max-w-5xl mx-auto space-y-24">
           
+          {/* Student-led model */}
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-black dark:text-white">
+              A Student-Led Nonprofit
+            </h2>
+            <div className="max-w-3xl mx-auto space-y-4 text-gray-600 dark:text-gray-300 text-base md:text-lg leading-relaxed">
+              <p>
+                STEM Sprouts is run by students. High school students start and lead STEM Sprouts chapters in their
+                schools and communities, and those chapters teach free, hands-on STEM lessons to elementary school
+                students.
+              </p>
+              <p>
+                That makes the relationship simple: older students gain real leadership experience, and younger
+                students get an approachable first introduction to science, technology, engineering, and math.
+              </p>
+              <p>
+                <Link href="/chapter-leadership" className="font-bold underline text-[#15803d] dark:text-[#22C55E]">
+                  Explore Chapter Leadership
+                </Link>{" "}
+                to see what leading a chapter involves, or{" "}
+                <Link href="/locations" className="font-bold underline text-[#15803d] dark:text-[#22C55E]">
+                  find a STEM Sprouts chapter near you
+                </Link>
+                . Ready to lead?{" "}
+                <a
+                  href={CHAPTER_APPLICATION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold underline text-[#15803d] dark:text-[#22C55E]"
+                >
+                  Start a STEM Sprouts chapter ↗
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+
           {/* Purpose Section */}
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black dark:text-white">Our Purpose</h2>
@@ -138,7 +190,7 @@ export default function AboutPage() {
           </div>
 
           {/* Team Section */}
-          <div>
+          <div id="team" className="scroll-mt-28">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black dark:text-white">Meet Our Team</h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
               {team.map((member, index) => (
@@ -223,7 +275,7 @@ export default function AboutPage() {
           </div>
 
           {/* Hiring Section */}
-          <PopIn className="bg-white dark:bg-black rounded-3xl border-4 border-black dark:border-white p-8 md:p-14 text-center">
+          <PopIn id="open-roles" className="scroll-mt-28 bg-white dark:bg-black rounded-3xl border-4 border-black dark:border-white p-8 md:p-14 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-4">We&apos;re Hiring!</h2>
             <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-10">
               Join our youth-led team and help us empower the next generation of STEM leaders. We are looking for

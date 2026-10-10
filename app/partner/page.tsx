@@ -2,16 +2,18 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Check, Download, HandHeart } from "lucide-react"
 import { Navigation } from "@/components/navigation"
+import { pageMetadata } from "@/lib/seo"
 import { PageHeader } from "@/components/page-header"
 import { Button } from "@/components/ui/button"
 import { Footer } from "@/components/footer"
 import { PopIn } from "@/components/pop-in"
 
-export const metadata: Metadata = {
-  title: "Partner - STEM Sprouts",
-  description: "Partner with STEM Sprouts to make STEM education free and accessible to every child.",
-  alternates: { canonical: "/partner" },
-}
+export const metadata: Metadata = pageMetadata({
+  title: "Partner With STEM Sprouts | Support Free Student-Led STEM Education",
+  description:
+    "Schools, libraries, nonprofits, and companies can partner with STEM Sprouts through sponsorship, in-kind donations, or mentorship to bring free STEM education to more students.",
+  path: "/partner",
+})
 
 const benefits = [
   {
@@ -28,6 +30,21 @@ const benefits = [
     title: "Direct Global Impact",
     description:
       "Sponsorships directly fund Pinboard development, chapter resources, and STEM kits for students who might not otherwise have access to high-quality robotics or coding tools.",
+  },
+]
+
+const whoCanPartner = [
+  {
+    title: "Schools and libraries",
+    description: "Host a local chapter's sessions in your space, or connect us with students who would benefit.",
+  },
+  {
+    title: "Companies and foundations",
+    description: "Sponsor Pinboard development, chapter resources, and STEM kits, or donate robotics and STEM hardware.",
+  },
+  {
+    title: "Nonprofits and community groups",
+    description: "Work with a chapter in your community, or share expertise through mentorship and speaking.",
   },
 ]
 
@@ -58,6 +75,21 @@ export default function PartnerPage() {
 
       <section className="container mx-auto px-4 py-16 md:py-24">
         <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black dark:text-white">
+            Who can partner with STEM Sprouts?
+          </h2>
+          <ul className="grid md:grid-cols-3 gap-6 mb-20 list-none">
+            {whoCanPartner.map((who) => (
+              <li
+                key={who.title}
+                className="bg-white dark:bg-black border-[3px] border-black dark:border-white rounded-[24px] p-8"
+              >
+                <h3 className="text-xl font-bold mb-3 text-black dark:text-white">{who.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{who.description}</p>
+              </li>
+            ))}
+          </ul>
+
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black dark:text-white">
             Sponsorship Benefits
           </h2>

@@ -3,6 +3,7 @@ import { Rocket, ArrowRight, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
+import { CHAPTER_APPLICATION_URL } from "@/lib/nav"
 import { BannerCarousel, type CarouselSlide } from "@/components/banner-carousel"
 
 function PhotoSlide({
@@ -41,7 +42,9 @@ function PhotoSlide({
             <Heading className="text-2xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-2 sm:mb-4">
               {headline} <span className="bg-[#22C55E] text-black px-2 sm:px-3 py-0.5 sm:py-1 inline-block">{highlight}</span>
             </Heading>
-            <p className="text-gray-200 text-sm sm:text-base md:text-lg font-medium mb-3 sm:mb-6 max-w-xl line-clamp-2 sm:line-clamp-none">
+            <p
+              className={`text-gray-200 text-sm sm:text-base md:text-lg font-medium mb-3 sm:mb-6 max-w-xl ${isFirst ? "" : "line-clamp-2 sm:line-clamp-none"}`}
+            >
               {subtext}
             </p>
             <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4">{children}</div>
@@ -55,29 +58,30 @@ function PhotoSlide({
 const slides: CarouselSlide[] = [
   {
     id: "global",
-    label: "A student-led STEM movement, going global",
+    label: "Free STEM education, led by students",
     content: (
       <PhotoSlide
         image="/stem/background.jpg"
         alt="STEM Sprouts students at a workshop"
-        headline="A student-led STEM movement,"
-        highlight="going global"
-        subtext="A growing international network of youth-led chapters, backed by Pinboard, our open-source platform for hands-on STEM."
+        headline="Free STEM Education,"
+        highlight="Led by Students."
+        subtext="STEM Sprouts is a student-led nonprofit providing free, hands-on STEM education to elementary school students through student-run chapters."
         priority
         isFirst
       >
-        <a href="https://chapters.stem-sprouts.org" target="_blank" rel="noopener noreferrer">
+        <a href={CHAPTER_APPLICATION_URL} target="_blank" rel="noopener noreferrer">
           <Button className="bg-[#22C55E] text-black hover:bg-[#1ea750] rounded-lg py-3 px-4 sm:py-5 sm:px-6 md:py-6 md:px-8 text-xs sm:text-sm md:text-base font-bold h-auto border-2 border-black">
             <Rocket className="w-5 h-5" aria-hidden="true" />
             Start a Chapter ↗
+            <span className="sr-only"> (opens in a new tab)</span>
           </Button>
         </a>
-        <Link href="/pinboard">
+        <Link href="/chapters">
           <Button
             variant="outline"
             className="bg-transparent border-2 border-white text-white hover:bg-white/10 rounded-lg py-3 px-4 sm:py-5 sm:px-6 md:py-6 md:px-8 text-xs sm:text-sm md:text-base font-bold h-auto"
           >
-            Explore Pinboard
+            Explore STEM Programs
             <ArrowRight className="w-5 h-5" aria-hidden="true" />
           </Button>
         </Link>
@@ -93,7 +97,7 @@ const slides: CarouselSlide[] = [
         alt="A student presenting a LEGO rocket model to fellow STEM Sprouts students"
         headline="Now active"
         highlight="around the world"
-        subtext="From Georgia to Kenya to India, STEM Sprouts chapters are popping up everywhere, run by students, for students."
+        subtext="From Georgia to Kenya to India, STEM Sprouts chapters are run by students and bring free STEM education to younger learners."
       >
         <Link href="/locations">
           <Button className="bg-[#22C55E] text-black hover:bg-[#1ea750] rounded-lg py-3 px-4 sm:py-5 sm:px-6 md:py-6 md:px-8 text-xs sm:text-sm md:text-base font-bold h-auto border-2 border-black">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { MapPin, Sparkles, Rocket } from "lucide-react"
 import { Navigation } from "@/components/navigation"
+import { pageMetadata } from "@/lib/seo"
 import { PageHeader } from "@/components/page-header"
 import { Footer } from "@/components/footer"
 import { PopIn } from "@/components/pop-in"
@@ -8,11 +9,12 @@ import { Button } from "@/components/ui/button"
 import { WorldMapLoader } from "@/components/world-map-loader"
 import type { MapChapter } from "@/components/world-map"
 
-export const metadata: Metadata = {
-  title: "Locations - STEM Sprouts",
-  description: "STEM Sprouts chapters around the world: from Georgia to Kenya to India, and growing.",
-  alternates: { canonical: "/locations" },
-}
+export const metadata: Metadata = pageMetadata({
+  title: "STEM Sprouts Chapter Locations | Student-Led Chapters Worldwide",
+  description:
+    "Find a STEM Sprouts chapter near you. Student-led chapters teach free, hands-on STEM across the United States, India, Bangladesh, Kenya, and the UAE, and you can apply to start one.",
+  path: "/locations",
+})
 
 const chapters: (MapChapter & { flag: string; badge?: string })[] = [
   { name: "Forsyth County", region: "Georgia, USA", flag: "🇺🇸", badge: "Founding Chapter", coordinates: [-84.1557, 34.2098] },
