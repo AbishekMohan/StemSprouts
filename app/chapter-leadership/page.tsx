@@ -291,7 +291,11 @@ export default function ChapterLeadershipPage() {
               </Button>
             </a>
             <p className="mt-6 text-sm text-black/80">
-              Prefer to join an existing chapter first?{" "}
+              Want to prepare first?{" "}
+              <Link href="/guides/how-to-start-a-student-led-stem-chapter" className="font-bold underline">
+                Read how to start a student-led STEM chapter
+              </Link>
+              . Prefer to join an existing chapter first?{" "}
               <Link href="/locations" className="font-bold underline">
                 Find a STEM Sprouts chapter
               </Link>{" "}

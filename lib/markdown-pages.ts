@@ -1,5 +1,6 @@
 import { SITE_URL } from "@/lib/site"
 import { SITE_DESCRIPTION } from "@/lib/seo"
+import { GUIDES } from "@/lib/guides"
 
 /**
  * Hand-maintained Markdown representations of the site's static pages,
@@ -120,6 +121,37 @@ Students can apply to start a chapter at their school or in their city, anywhere
 
 Apply: https://chapters.stem-sprouts.org`,
   },
+  {
+    path: "/programs",
+    title: "Programs - STEM Sprouts",
+    body: `Free, hands-on STEM education for elementary school students, led by students, plus the open-source tools and research that support it.
+
+## STEM Sprouts chapter workshops
+
+Our core education model: student-run chapters teach free, hands-on STEM to elementary school students. See [Chapters](${SITE_URL}/chapters) and [Chapter Leadership](${SITE_URL}/chapter-leadership).
+
+## Pinboard
+
+A separate, free, open-source browser-based block-coding platform for Arduino and Raspberry Pi, built by students. See [Pinboard](${SITE_URL}/pinboard).
+
+## Research and community programs
+
+The [Policy Fellowship](${SITE_URL}/policy-fellowship), a research program with the National Student Research Institute, and a partnership with the UN Major Group for Children and Youth.`,
+  },
+  {
+    path: "/guides",
+    title: "STEM Guides - STEM Sprouts",
+    body: `Practical, free guides for high school students who want to start a chapter and teach STEM to younger students.
+
+${GUIDES.map((g) => `- [${g.title}](${SITE_URL}/guides/${g.slug}): ${g.description}`).join("\n")}`,
+  },
+  ...GUIDES.map((g) => ({
+    path: `/guides/${g.slug}`,
+    title: g.title,
+    body: `${g.intro}\n\n${g.sections
+      .map((sec) => `## ${sec.heading}\n\n${sec.body.join("\n\n")}${sec.items ? "\n\n" + sec.items.map((i) => `- ${i}`).join("\n") : ""}`)
+      .join("\n\n")}`,
+  })),
   {
     path: "/locations",
     title: "Locations - STEM Sprouts",

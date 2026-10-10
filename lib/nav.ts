@@ -24,6 +24,7 @@ export const NAV_ENTRIES: NavEntry[] = [
   {
     label: "Programs",
     items: [
+      { label: "Programs Overview", href: "/programs" },
       { label: "STEM Sprouts Chapters", href: "/chapters" },
       { label: "Pinboard", href: "/pinboard" },
       { label: "Policy Fellowship & Research", href: "/policy-fellowship" },
@@ -36,10 +37,18 @@ export const NAV_ENTRIES: NavEntry[] = [
       { label: "Find a Chapter", href: "/locations" },
       { label: "Start a Chapter", href: CHAPTER_APPLICATION_URL, external: true },
       { label: "Chapter Leadership", href: "/chapter-leadership" },
-      { label: "Chapter Resources", href: "/resources" },
+      { label: "Chapter Resources", href: "/resources#curriculum" },
     ],
   },
-  { label: "Resources", href: "/resources" },
+  {
+    label: "Resources",
+    items: [
+      { label: "All Resources", href: "/resources" },
+      { label: "STEM Activities & Tools", href: "/resources#tools" },
+      { label: "Curriculum", href: "/resources#curriculum" },
+      { label: "Guides", href: "/guides" },
+    ],
+  },
   { label: "News", href: "/news" },
   {
     label: "Get Involved",

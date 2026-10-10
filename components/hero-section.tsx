@@ -76,7 +76,7 @@ const slides: CarouselSlide[] = [
             <span className="sr-only"> (opens in a new tab)</span>
           </Button>
         </a>
-        <Link href="/chapters">
+        <Link href="/programs">
           <Button
             variant="outline"
             className="bg-transparent border-2 border-white text-white hover:bg-white/10 rounded-lg py-3 px-4 sm:py-5 sm:px-6 md:py-6 md:px-8 text-xs sm:text-sm md:text-base font-bold h-auto"

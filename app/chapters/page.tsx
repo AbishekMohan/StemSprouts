@@ -132,7 +132,11 @@ export default function ChaptersPage() {
               </Button>
             </a>
             <p className="mt-6 text-sm text-gray-300">
-              Looking for activities to run?{" "}
+              New to this?{" "}
+              <Link href="/guides/how-to-start-a-student-led-stem-chapter" className="font-bold underline text-[#22C55E]">
+                Read our guide to starting a chapter
+              </Link>
+              . Looking for activities to run?{" "}
               <Link href="/resources" className="font-bold underline text-[#22C55E]">
                 Browse free STEM resources
               </Link>{" "}

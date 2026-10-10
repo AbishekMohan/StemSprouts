@@ -70,6 +70,8 @@ describe("sitemap", () => {
     const urls = (await sitemap()).map((entry) => entry.url)
     expect(urls).toContain("https://stem-sprouts.org/chapter-leadership")
     expect(urls).toContain("https://stem-sprouts.org/chapters")
+    expect(urls).toContain("https://stem-sprouts.org/programs")
+    expect(urls).toContain("https://stem-sprouts.org/guides/how-to-start-a-student-led-stem-chapter")
     expect(new Set(urls).size).toBe(urls.length)
   })
 })

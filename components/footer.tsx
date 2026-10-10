@@ -122,6 +122,11 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/programs" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
+                    Programs
+                  </Link>
+                </li>
+                <li>
                   <Link href="/chapter-leadership" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
                     Chapter Leadership
                   </Link>
@@ -144,6 +149,11 @@ export function Footer() {
                 <li>
                   <Link href="/resources" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
                     Resources
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/guides" className="inline-block py-1 hover:text-black dark:hover:text-white transition-colors">
+                    Guides
                   </Link>
                 </li>
                 <li>

@@ -163,7 +163,7 @@ export default function ResourcesPage() {
 
       <section className="container mx-auto px-4 py-16 md:py-24">
         <div className="max-w-5xl mx-auto space-y-20">
-          <PopIn className="bg-white dark:bg-black border-4 border-black dark:border-white rounded-3xl p-8 md:p-14 text-center">
+          <PopIn id="curriculum" className="scroll-mt-28 bg-white dark:bg-black border-4 border-black dark:border-white rounded-3xl p-8 md:p-14 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-4">Our Past Curriculum</h2>
             <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
               Explore the workshops we&apos;ve created for our STEM Sprouts community: lesson plans, activities, and
@@ -180,7 +180,11 @@ export default function ResourcesPage() {
               </Button>
             </a>
             <p className="mt-6 text-sm text-gray-600 dark:text-gray-400">
-              Questions about our curriculum?{" "}
+              Looking for step-by-step help?{" "}
+              <Link href="/guides" className="text-[#15803d] dark:text-[#22C55E] font-bold underline">
+                Read our STEM Sprouts guides
+              </Link>
+              . Questions about our curriculum?{" "}
               <a href="mailto:hello@stem-sprouts.org" className="text-[#15803d] dark:text-[#22C55E] font-bold underline">
                 Contact us
               </a>
@@ -223,7 +227,7 @@ export default function ResourcesPage() {
             </PopIn>
           </div>
 
-          <div>
+          <div id="tools" className="scroll-mt-28">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 text-black dark:text-white">
               Online Learning Platforms
             </h2>
